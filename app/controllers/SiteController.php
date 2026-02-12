@@ -1,0 +1,161 @@
+<?php
+namespace app\controllers;
+use app\App;
+use app\AuthService;
+use app\Controller;
+use app\helpers\Alert;
+use app\helpers\MetaTagManager;
+use app\models\Shezhire;
+use app\models\User;
+use app\Response;
+
+
+class SiteController extends Controller {
+
+//    public string $layout = 'new';
+    public function actionIndex() {
+        
+        MetaTagManager::register(['asdf' => 'cofg']);
+
+        $user = User::find()->all();
+
+
+        return $this->render('index', [
+            'id' => 123,
+            'users' => $user
+        ]);
+    }
+
+    public function actionView($id)
+    {
+        $model = User::find()->where(['id' => $id])->one();
+
+        return $this->render('view', [
+            'model' => $model
+        ]);
+    }
+
+    public function actionAdd()
+    {
+
+        if($this->user->isGuest()){
+            Alert::add('danger', 'Please login');
+            return $this->redirect('/');
+        }
+        $model = new User();
+
+        if($this->request->isPost() && $model->load($this->request->post())){
+            $model->save();
+            return $this->redirect('/');
+
+        }
+
+        return $this->render('add', [
+            'model' => $model
+        ]);
+
+    }
+
+    public function actionDelete($id)
+    {
+
+        $user = User::find()->where(['id' => $id])->one();
+
+        if(!$user){
+            Alert::add("danger", "Cant find row");
+            return $this->redirect(['site/index']);
+        }
+
+        $user->delete();
+
+        Alert::add("warning", "Успешно удалено");
+
+        $this->redirect('/');
+
+    }
+
+    public function actionLogin()
+    {
+
+        $model = new User();
+
+        if($this->request->isPost()){
+            $ok = $this->user::login($_POST['login'], $_POST['password']);
+            if ($ok) {
+                Alert::add('success', 'Logged');
+                return Response::redirect(['site/index']);
+            }
+            else{
+                Alert::add('danger', 'Wrong');
+                return Response::redirect(['site/login']);
+            }
+        }
+
+        return $this->render('login', [
+            'model' => $model
+        ]);
+    }
+
+    public function actionUpdate($id)
+    {
+        $model = User::findOne($id);
+
+        if(!$model){
+            throw new \Exception("Не удалось найти", 256);
+        }
+
+        if($this->request->isPost() && $model->load($this->request->post())){
+            $model->save();
+
+            return $this->redirect('/');
+
+        }
+
+        return $this->render('update', [
+            'model' => $model
+        ]);
+    }
+
+
+    public function actionLogout()
+    {
+        $this->user->logout();
+        Alert::add('warning', 'Logged out');
+        return $this->redirect('/');
+    }
+
+    public function actionRecursion()
+    {
+
+        $model = Shezhire::find()->where(['id' => 1])->one();
+
+        return $this->renderPartial('recursion', [
+            'model' => $model
+        ]);
+
+    }
+
+    public function actionModal()
+    {
+        return $this->renderPartial('modal');
+    }
+
+    public function actionLoad($id)
+    {
+        $model = Shezhire::find()->where(['parent_id' => $id])->all();
+
+        return $this->response->json($model);
+    }
+
+    public function findModel($model, $id)
+    {
+        $m = "\\app\\models\\$model";
+        $m = $m::find()->where(['id' => $id])->one();
+
+        if(!$m){
+            throw new \Exception("Не удалось найти запись");
+        }
+        return $model;
+    }
+
+}

@@ -1,0 +1,40 @@
+<?php
+
+namespace app\models;
+
+use app\ActiveRecord;
+use app\Auth;
+
+class User extends ActiveRecord implements Auth
+{
+    public static function tableName(): string
+    {
+        return 'user';
+    }
+
+    /* ========== Identity ========== */
+
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    public static function findByUsername(string $username)
+    {
+        return static::find()
+            ->where(['login' => $username])
+            ->one();
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /* ========== Password ========== */
+
+    public function validatePassword(string $password): bool
+    {
+        return $password === $this->password;
+    }
+}

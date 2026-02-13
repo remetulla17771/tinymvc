@@ -1,5 +1,158 @@
 [
     {
+        "id": 601,
+        "time": "2026-02-13 07:52:51",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 41
+    },
+    {
+        "id": 600,
+        "time": "2026-02-13 07:52:45",
+        "code": 500,
+        "type": "TypeError",
+        "message": "Typed property app\\Router::$request must be an instance of app\\Request, null used",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 7
+    },
+    {
+        "id": 599,
+        "time": "2026-02-13 07:52:21",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 105
+    },
+    {
+        "id": 598,
+        "time": "2026-02-13 07:52:15",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 105
+    },
+    {
+        "id": 597,
+        "time": "2026-02-13 07:52:13",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 105
+    },
+    {
+        "id": 596,
+        "time": "2026-02-13 07:52:13",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 105
+    },
+    {
+        "id": 595,
+        "time": "2026-02-13 07:52:10",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 105
+    },
+    {
+        "id": 594,
+        "time": "2026-02-13 07:52:03",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined index: controller",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 99
+    },
+    {
+        "id": 593,
+        "time": "2026-02-13 07:51:25",
+        "code": 500,
+        "type": "TypeError",
+        "message": "Typed property app\\Router::$request must be an instance of app\\Request, null used",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 7
+    },
+    {
+        "id": 592,
+        "time": "2026-02-13 07:51:19",
+        "code": 500,
+        "type": "Error",
+        "message": "Typed property app\\Router::$request must not be accessed before initialization",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 87
+    },
+    {
+        "id": 591,
+        "time": "2026-02-13 07:50:57",
+        "code": 500,
+        "type": "TypeError",
+        "message": "Typed property app\\Router::$request must be an instance of app\\Request, null used",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 7
+    },
+    {
+        "id": 590,
+        "time": "2026-02-13 07:38:55",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 41
+    },
+    {
+        "id": 589,
+        "time": "2026-02-13 07:38:55",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 41
+    },
+    {
+        "id": 588,
+        "time": "2026-02-13 07:38:55",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 41
+    },
+    {
+        "id": 587,
+        "time": "2026-02-13 07:38:54",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 41
+    },
+    {
+        "id": 586,
+        "time": "2026-02-13 07:38:53",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 41
+    },
+    {
+        "id": 585,
+        "time": "2026-02-13 07:38:41",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 41
+    },
+    {
         "id": 584,
         "time": "2026-02-12 15:31:15",
         "code": 404,

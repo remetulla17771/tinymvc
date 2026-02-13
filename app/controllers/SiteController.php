@@ -8,6 +8,7 @@ use app\helpers\MetaTagManager;
 use app\models\Shezhire;
 use app\models\User;
 use app\Response;
+use app\vendor\privacy\Privacy;
 
 
 class SiteController extends Controller {
@@ -18,7 +19,6 @@ class SiteController extends Controller {
         MetaTagManager::register(['asdf' => 'cofg']);
 
         $user = User::find()->all();
-
 
         return $this->render('index', [
             'id' => 123,

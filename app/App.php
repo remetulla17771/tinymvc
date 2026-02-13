@@ -1,8 +1,13 @@
 <?php
+
 namespace app;
+
+use app\controllers\PrivacyController;
 use app\helpers\I18n;
 use app\ErrorHandler;
-class App {
+
+class App
+{
     /**
      * @var mixed|null
      */
@@ -12,13 +17,15 @@ class App {
 
     public $title = "My App";
     private $configFile;
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->request = new Request();
         $this->router = new Router($this->request);
 
         $this->configFile = require "config/web.php";
 
-        foreach ($this->configFile['components'] as $key => $value){
+        foreach ($this->configFile['components'] as $key => $value) {
 
             $this->$key = new $value['class']();
 
@@ -40,13 +47,12 @@ class App {
     {
 
 
-        if($die == 1){
+        if ($die == 1) {
             echo "<pre>";
             print_r($arr);
             echo "</pre>";
             die;
-        }
-        else{
+        } else {
             echo "<pre>";
             print_r($arr);
             echo "</pre>";
@@ -67,6 +73,7 @@ class App {
     public function run()
     {
         try {
+
             return $this->router->resolve();
         } catch (\Throwable $e) {
 

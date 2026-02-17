@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'appName' => 'Free Hash',
+    'appName' => 'TinyMVC',
     'components' => [
         'user' => [
             'class' => '\app\AuthService'

@@ -1,4 +1,4 @@
-# Free Hash
+# TinyMVC
 
 Мини-фреймворк на PHP в стиле Yii2 (упрощённый MVC): `web/index.php → Router → Controller → View/Layout`, простые компоненты из конфига, ActiveRecord/Query, i18n, ассеты, обработка ошибок и логирование.
 

@@ -5,7 +5,13 @@ namespace app\console;
 
 class HelpCommand implements CommandInterface
 {
-    public function __construct(ConsoleApplication $app) {}
+    /** @var ConsoleApplication */
+    private $app;
+
+    public function __construct(ConsoleApplication $app)
+    {
+        $this->app = $app;
+    }
 
     public function name(): string { return 'help'; }
     public function description(): string { return 'Show available commands'; }

@@ -20,5 +20,7 @@ spl_autoload_register(function ($class) {
     if (file_exists($file)) require $file;
 });
 
+ErrorHandler::register();
+
 $app = new app\console\ConsoleApplication();
 exit($app->run($argv));

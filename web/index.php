@@ -2,7 +2,6 @@
 declare(strict_types=1);
 require __DIR__ . '/../app/ErrorHandler.php';
 
-use app\controllers\PrivacyController;
 use app\ErrorHandler;
 
 ob_start();

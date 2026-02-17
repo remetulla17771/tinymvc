@@ -175,7 +175,7 @@ class MakeCrudCommand implements CommandInterface
             "                \$id = \$data->{$pk};\n" .
             "                return Html::a('View', ['/$controllerId/view', 'id' => \$id], ['class' => 'btn btn-success btn-sm'])\n" .
             "                    . ' ' . Html::a('Update', ['/$controllerId/update', 'id' => \$id], ['class' => 'btn btn-warning btn-sm'])\n" .
-            "                    . ' ' . Html::a('Delete', ['/$controllerId/delete', 'id' => \$id], ['class' => 'btn btn-danger btn-sm', 'onclick' => \"return confirm('Delete?');\"]);\n" .
+            "                    . ' ' . Html::a('Delete', ['/$controllerId/delete', 'id' => \$id], ['class' => 'btn btn-danger btn-sm', 'data-confirm' => \"Are you sure you want to delete this?\"]);\n" .
             "            }\n" .
             "        ],\n";
 
@@ -241,7 +241,7 @@ class MakeCrudCommand implements CommandInterface
             "<p>\n" .
             "    <?= Html::a('Back', ['/$controllerId/index'], ['class' => 'btn btn-secondary']) ?>\n" .
             "    <?= Html::a('Update', ['/$controllerId/update', 'id' => \$model->{$pk}], ['class' => 'btn btn-warning']) ?>\n" .
-            "    <?= Html::a('Delete', ['/$controllerId/delete', 'id' => \$model->{$pk}], ['class' => 'btn btn-danger', 'onclick' => \"return confirm('Delete?');\"]) ?>\n" .
+            "    <?= Html::a('Delete', ['/$controllerId/delete', 'id' => \$model->{$pk}], ['class' => 'btn btn-danger', 'data-confirm' => \"Are you sure you want to delete this?\"]) ?>\n" .
             "</p>\n\n" .
             "<?= DetailView::widget([\n" .
             "    'model' => \$model,\n" .

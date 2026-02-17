@@ -25,7 +25,7 @@ $this->title = 'News list';
                 $id = $data->id;
                 return Html::a('View', ['/news/view', 'id' => $id], ['class' => 'btn btn-success btn-sm'])
                     . ' ' . Html::a('Update', ['/news/update', 'id' => $id], ['class' => 'btn btn-warning btn-sm'])
-                    . ' ' . Html::a('Delete', ['/news/delete', 'id' => $id], ['class' => 'btn btn-danger btn-sm', 'onclick' => "return confirm('Delete?');"]);
+                    . ' ' . Html::a('Delete', ['/news/delete', 'id' => $id], ['class' => 'btn btn-danger btn-sm', 'data-confirm' => "Are you sure you want to delete this?"]);
             }
         ],
     ]

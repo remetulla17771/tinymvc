@@ -12,7 +12,7 @@ $this->title = 'View';
 <p>
     <?= Html::a('Back', ['/news/index'], ['class' => 'btn btn-secondary']) ?>
     <?= Html::a('Update', ['/news/update', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
-    <?= Html::a('Delete', ['/news/delete', 'id' => $model->id], ['class' => 'btn btn-danger', 'onclick' => "return confirm('Delete?');"]) ?>
+    <?= Html::a('Delete', ['/news/delete', 'id' => $model->id], ['class' => 'btn btn-danger', 'data-confirm' => "Are you sure you want to delete this?"]) ?>
 </p>
 
 <?= DetailView::widget([

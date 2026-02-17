@@ -3,14 +3,29 @@ namespace app\controllers;
 
 use app\Controller;
 use app\helpers\Alert;
+use app\helpers\Pagination;
 use app\models\News;
 
 class NewsController extends Controller
 {
     public function actionIndex()
     {
-        $models = News::find()->all();
-        return $this->render('index', ['models' => $models]);
+        $page = (int)($_GET['page'] ?? 1);
+        if ($page < 1) $page = 1;
+        $pageSize = (int)($_GET['per-page'] ?? 10);
+        if ($pageSize < 1) $pageSize = 10;
+        if ($pageSize > 100) $pageSize = 100;
+
+        $query = News::find()->orderBy(['id' => 'DESC']);
+        $total = $query->count();
+        $pagination = new Pagination($total, $pageSize, $page);
+
+        $models = $query
+            ->limit($pagination->pageSize)
+            ->offset($pagination->getOffset())
+            ->all();
+
+        return $this->render('index', ['models' => $models, 'pagination' => $pagination]);
     }
 
     public function actionView($id)

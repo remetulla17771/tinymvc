@@ -1,5 +1,14 @@
 [
     {
+        "id": 626,
+        "time": "2026-02-17 15:32:43",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined variable: users",
+        "file": "W:\\domains\\auth.loc\\views\\site\\index.php",
+        "line": 17
+    },
+    {
         "id": 625,
         "time": "2026-02-17 12:47:51",
         "code": 500,

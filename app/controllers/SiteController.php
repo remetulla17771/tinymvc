@@ -5,6 +5,7 @@ use app\AuthService;
 use app\Controller;
 use app\helpers\Alert;
 use app\helpers\MetaTagManager;
+use app\helpers\Pagination;
 use app\models\Shezhire;
 use app\models\User;
 use app\Response;
@@ -18,11 +19,23 @@ class SiteController extends Controller {
         
         MetaTagManager::register(['asdf' => 'cofg']);
 
-        $user = User::find()->all();
+        $page = (int)$this->request->get('page');
+        $page = max(1, $page);
+        $pageSize = 2;
+
+        $query = User::find()->orderBy(['id' => 'DESC']);
+
+        $total = $query->count();
+        $pagination = new Pagination($total, $pageSize, $page);
+
+        $models = $query
+            ->limit($pagination->pageSize)
+            ->offset($pagination->getOffset())
+            ->all();
 
         return $this->render('index', [
-            'id' => 123,
-            'users' => $user
+            'models' => $models,
+            'pagination' => $pagination,
         ]);
     }
 

@@ -1,7 +1,8 @@
 <?php
 
 /**
- * @var $users app\models\User
+ * @var $models app\models\User
+ * @var $pagination app\helpers\Pagination
  */
 
 use app\assets\FontAwesomeAsset;
@@ -14,7 +15,7 @@ use app\helpers\Modal;
 
 
 <?= GridView::widget([
-    'dataProvider' => $users,
+    'dataProvider' => $models,
     'columns' => [
         [
             'label' => 'Select',
@@ -48,6 +49,9 @@ use app\helpers\Modal;
     ]
 ]);
 ?>
+
+<?= \app\helpers\LinkPager::widget(['pagination' => $pagination]) ?>
+
 
 <div>
     <button class="btn btn-primary" modal-id="modal_1">Open modal with ajax</button>

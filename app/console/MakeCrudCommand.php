@@ -108,14 +108,27 @@ class MakeCrudCommand implements CommandInterface
             "namespace app\\controllers;\n\n" .
             "use app\\Controller;\n" .
             "use app\\helpers\\Alert;\n" .
+            "use app\\helpers\\Pagination;\n" .
             "use {$modelClass};\n\n" .
             "class {$controllerClass} extends Controller\n" .
             "{\n" .
             "    public function actionIndex()\n" .
             "    {\n" .
-            "        \$models = {$this->short($modelClass)}::find()->all();\n" .
-            "        return \$this->render('index', ['models' => \$models]);\n" .
+            "        \$page = (int)(\$_GET['page'] ?? 1);\n" .
+            "        if (\$page < 1) \$page = 1;\n" .
+            "        \$pageSize = (int)(\$_GET['per-page'] ?? 10);\n" .
+            "        if (\$pageSize < 1) \$pageSize = 10;\n" .
+            "        if (\$pageSize > 100) \$pageSize = 100;\n\n" .
+            "        \$query = {$this->short($modelClass)}::find()->orderBy(['{$pk}' => 'DESC']);\n" .
+            "        \$total = \$query->count();\n" .
+            "        \$pagination = new Pagination(\$total, \$pageSize, \$page);\n\n" .
+            "        \$models = \$query\n" .
+            "            ->limit(\$pagination->pageSize)\n" .
+            "            ->offset(\$pagination->getOffset())\n" .
+            "            ->all();\n\n" .
+            "        return \$this->render('index', ['models' => \$models, 'pagination' => \$pagination]);\n" .
             "    }\n\n" .
+
             "    public function actionView(\$id)\n" .
             "    {\n" .
             "        \$model = {$this->short($modelClass)}::find()->where(['{$pk}' => (int)\$id])->one();\n" .
@@ -181,8 +194,10 @@ class MakeCrudCommand implements CommandInterface
 
         return "<?php\n" .
             "/** @var \$models {$modelClass}[] */\n\n" .
+            "/** @var \$pagination \app\helpers\Pagination */ \n".
             "use app\\helpers\\GridView;\n" .
             "use app\\helpers\\Html;\n\n" .
+            "use app\\helpers\\LinkPager;\n\n" .
             "\$this->title = '{$modelShort} list';\n" .
             "?>\n\n" .
             "<h1><?= Html::encode(\$this->title) ?></h1>\n\n" .
@@ -194,33 +209,10 @@ class MakeCrudCommand implements CommandInterface
             "    'columns' => [\n" .
             $columnsPhp .
             "    ]\n" .
-            "]); ?>\n";
+            "]); ?>\n".
+            "<?= LinkPager::widget(['pagination' => \$pagination]) ?>
+";
     }
-
-//    private function buildViewView(string $modelClass, string $controllerId, string $pk, array $cols): string
-//    {
-//        $rows = "";
-//        foreach ($cols as $c) {
-//            $f = (string)($c['Field'] ?? '');
-//            if ($f === '') continue;
-/*            $rows .= "<tr><th>{$f}</th><td><?= Html::encode(\$model->{$f}) ?></td></tr>\n";*/
-//        }
-//
-//        return "<?php\n" .
-//            "/** @var \$model {$modelClass} */\n\n" .
-//            "use app\\helpers\\Html;\n\n" .
-//            "\$this->title = 'View';\n" .
-/*            "?>\n\n" .*/
-/*            "<h1><?= Html::encode(\$this->title) ?></h1>\n\n" .*/
-//            "<p>\n" .
-/*            "    <?= Html::a('Back', ['/$controllerId/index'], ['class' => 'btn btn-secondary']) ?>\n" .*/
-/*            "    <?= Html::a('Update', ['/$controllerId/update', 'id' => \$model->{$pk}], ['class' => 'btn btn-warning']) ?>\n" .*/
-/*            "    <?= Html::a('Delete', ['/$controllerId/delete', 'id' => \$model->{$pk}], ['class' => 'btn btn-danger', 'onclick' => \"return confirm('Delete?');\"]) ?>\n" .*/
-//            "</p>\n\n" .
-//            "<table class=\"table table-bordered\">\n" .
-//            $rows .
-//            "</table>\n";
-//    }
 
     private function buildViewView(string $modelClass, string $controllerId, string $pk, array $cols): string
     {

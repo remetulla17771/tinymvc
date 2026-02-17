@@ -1,8 +1,11 @@
 <?php
 /** @var $models app\models\News[] */
 
+/** @var $pagination \app\helpers\Pagination */ 
 use app\helpers\GridView;
 use app\helpers\Html;
+
+use app\helpers\LinkPager;
 
 $this->title = 'News list';
 ?>
@@ -30,3 +33,4 @@ $this->title = 'News list';
         ],
     ]
 ]); ?>
+<?= LinkPager::widget(['pagination' => $pagination]) ?>

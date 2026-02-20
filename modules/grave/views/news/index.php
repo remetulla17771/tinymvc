@@ -12,7 +12,7 @@ $this->title = 'News list';
 <h1><?= Html::encode($this->title) ?></h1>
 
 <p>
-    <?= Html::a('Create News', ['/news/create'], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a('Create News', ['/grave/news/create'], ['class' => 'btn btn-primary']) ?>
 </p>
 
 <?= GridView::widget([
@@ -26,9 +26,9 @@ $this->title = 'News list';
             'label' => 'Action',
             'value' => function ($data) {
                 $id = $data->id;
-                return Html::a('View', ['/news/view', 'id' => $id], ['class' => 'btn btn-success btn-sm'])
-                    . ' ' . Html::a('Update', ['/news/update', 'id' => $id], ['class' => 'btn btn-warning btn-sm'])
-                    . ' ' . Html::a('Delete', ['/news/delete', 'id' => $id], ['class' => 'btn btn-danger btn-sm', 'data-confirm' => "Are you sure you want to delete this?"]);
+                return Html::a('View', ['/grave/news/view', 'id' => $id], ['class' => 'btn btn-success btn-sm'])
+                    . ' ' . Html::a('Update', ['/grave/news/update', 'id' => $id], ['class' => 'btn btn-warning btn-sm'])
+                    . ' ' . Html::a('Delete', ['/grave/news/delete', 'id' => $id], ['class' => 'btn btn-danger btn-sm', 'data-confirm' => "Are you sure you want to delete this?"]);
             }
         ],
     ]

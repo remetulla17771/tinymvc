@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit4440c6a8fe489e2dda1f324dd4c838a7
 {
     public static $prefixLengthsPsr4 = array (
+        'm' => 
+        array (
+            'modules\\' => 8,
+        ),
         'a' => 
         array (
             'app\\' => 4,
@@ -14,6 +18,10 @@ class ComposerStaticInit4440c6a8fe489e2dda1f324dd4c838a7
     );
 
     public static $prefixDirsPsr4 = array (
+        'modules\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules',
+        ),
         'app\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -22,6 +30,59 @@ class ComposerStaticInit4440c6a8fe489e2dda1f324dd4c838a7
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'app\\ActiveRecord' => __DIR__ . '/../..' . '/app/ActiveRecord.php',
+        'app\\App' => __DIR__ . '/../..' . '/app/App.php',
+        'app\\Auth' => __DIR__ . '/../..' . '/app/Auth.php',
+        'app\\AuthService' => __DIR__ . '/../..' . '/app/AuthService.php',
+        'app\\Controller' => __DIR__ . '/../..' . '/app/Controller.php',
+        'app\\Db' => __DIR__ . '/../..' . '/app/Db.php',
+        'app\\ErrorHandler' => __DIR__ . '/../..' . '/app/ErrorHandler.php',
+        'app\\Migration' => __DIR__ . '/../..' . '/app/Migration.php',
+        'app\\Query' => __DIR__ . '/../..' . '/app/Query.php',
+        'app\\Request' => __DIR__ . '/../..' . '/app/Request.php',
+        'app\\Response' => __DIR__ . '/../..' . '/app/Response.php',
+        'app\\Router' => __DIR__ . '/../..' . '/app/Router.php',
+        'app\\UrlManager' => __DIR__ . '/../..' . '/app/UrlManager.php',
+        'app\\assets\\AppAsset' => __DIR__ . '/../..' . '/app/assets/AppAsset.php',
+        'app\\assets\\BootstrapAsset' => __DIR__ . '/../..' . '/app/assets/BootstrapAsset.php',
+        'app\\assets\\FontAwesomeAsset' => __DIR__ . '/../..' . '/app/assets/FontAwesomeAsset.php',
+        'app\\console\\CommandInterface' => __DIR__ . '/../..' . '/app/console/CommandInterface.php',
+        'app\\console\\ConsoleApplication' => __DIR__ . '/../..' . '/app/console/ConsoleApplication.php',
+        'app\\console\\HelpCommand' => __DIR__ . '/../..' . '/app/console/HelpCommand.php',
+        'app\\console\\Input' => __DIR__ . '/../..' . '/app/console/Input.php',
+        'app\\console\\MakeControllerCommand' => __DIR__ . '/../..' . '/app/console/MakeControllerCommand.php',
+        'app\\console\\MakeCrudCommand' => __DIR__ . '/../..' . '/app/console/MakeCrudCommand.php',
+        'app\\console\\MakeMigrationCommand' => __DIR__ . '/../..' . '/app/console/MakeMigrationCommand.php',
+        'app\\console\\MakeModelCommand' => __DIR__ . '/../..' . '/app/console/MakeModelCommand.php',
+        'app\\console\\MigrateCommand' => __DIR__ . '/../..' . '/app/console/MigrateCommand.php',
+        'app\\console\\Output' => __DIR__ . '/../..' . '/app/console/Output.php',
+        'app\\console\\Stub' => __DIR__ . '/../..' . '/app/console/Stub.php',
+        'app\\controllers\\ErrorController' => __DIR__ . '/../..' . '/app/controllers/ErrorController.php',
+        'app\\controllers\\NewsController' => __DIR__ . '/../..' . '/app/controllers/NewsController.php',
+        'app\\controllers\\SiteController' => __DIR__ . '/../..' . '/app/controllers/SiteController.php',
+        'app\\controllers\\TestController' => __DIR__ . '/../..' . '/app/controllers/TestController.php',
+        'app\\error\\ErrorHandler' => __DIR__ . '/../..' . '/app/error/ErrorHandler.php',
+        'app\\helpers\\ActiveForm' => __DIR__ . '/../..' . '/app/helpers/ActiveForm.php',
+        'app\\helpers\\Alert' => __DIR__ . '/../..' . '/app/helpers/Alert.php',
+        'app\\helpers\\ArrayHelper' => __DIR__ . '/../..' . '/app/helpers/ArrayHelper.php',
+        'app\\helpers\\AssetBundle' => __DIR__ . '/../..' . '/app/helpers/AssetBundle.php',
+        'app\\helpers\\DetailView' => __DIR__ . '/../..' . '/app/helpers/DetailView.php',
+        'app\\helpers\\GridView' => __DIR__ . '/../..' . '/app/helpers/GridView.php',
+        'app\\helpers\\Html' => __DIR__ . '/../..' . '/app/helpers/Html.php',
+        'app\\helpers\\I18n' => __DIR__ . '/../..' . '/app/helpers/I18n.php',
+        'app\\helpers\\LinkPager' => __DIR__ . '/../..' . '/app/helpers/LinkPager.php',
+        'app\\helpers\\MetaTagManager' => __DIR__ . '/../..' . '/app/helpers/MetaTagManager.php',
+        'app\\helpers\\Modal' => __DIR__ . '/../..' . '/app/helpers/Modal.php',
+        'app\\helpers\\NavBar' => __DIR__ . '/../..' . '/app/helpers/NavBar.php',
+        'app\\helpers\\Pagination' => __DIR__ . '/../..' . '/app/helpers/Pagination.php',
+        'app\\helpers\\Session' => __DIR__ . '/../..' . '/app/helpers/Session.php',
+        'app\\helpers\\UploadFile' => __DIR__ . '/../..' . '/app/helpers/UploadFile.php',
+        'app\\models\\News' => __DIR__ . '/../..' . '/app/models/News.php',
+        'app\\models\\Shezhire' => __DIR__ . '/../..' . '/app/models/Shezhire.php',
+        'app\\models\\User' => __DIR__ . '/../..' . '/app/models/User.php',
+        'app\\vendor\\privacy\\Privacy' => __DIR__ . '/../..' . '/app/vendor/privacy/Privacy.php',
+        'modules\\assign\\Module' => __DIR__ . '/../..' . '/modules/assign/Module.php',
+        'modules\\assign\\controllers\\DefaultController' => __DIR__ . '/../..' . '/modules/assign/controllers/DefaultController.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

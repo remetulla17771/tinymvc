@@ -1,15 +1,17 @@
 <?php
 namespace app;
-class Router {
+
+class Router
+{
     protected Request $request;
 
-    public function __construct(Request $request = null) {
+    public function __construct(Request $request)
+    {
         $this->request = $request;
     }
 
     private function toStudly(string $name): string
     {
-        // "test-test" / "test_test" -> "TestTest"
         $name = str_replace(['-', '_'], ' ', $name);
         $name = ucwords($name);
         return str_replace(' ', '', $name);
@@ -17,40 +19,57 @@ class Router {
 
     public function resolve()
     {
-//        $segments = UrlManager::parseRequest($_SERVER['REQUEST_URI']);
         $segments = $this->request->getSegments();
 
-
+        // язык
         $lang = $_GET['lang'] ?? $_SESSION['lang'] ?? 'ru';
-
-        // 2️⃣ сохранить язык
         $_SESSION['lang'] = $lang;
 
+        // стабильные дефолты (НЕ через new UrlManager, он парсит текущий URI)
+        $defaultController = 'site';
+        $defaultAction = 'index';
 
-        $controllerName = $segments[0] ?? (new UrlManager)->controller;
-        $actionName     = $segments[1] ?? (new UrlManager)->action;
+        $moduleId = $segments[0] ?? null;
+        $isModule = false;
 
+        if ($moduleId && preg_match('/^[A-Za-z0-9_]+$/', $moduleId)) {
+            $modulesDir = __DIR__ . '/../modules/' . $moduleId;
+            if (is_dir($modulesDir)) {
+                $isModule = true;
+            }
+        }
 
-        $controllerClass =
-            'app\\controllers\\' . $this->toStudly($controllerName) . 'Controller';
+        if ($isModule) {
+            // /admin/site/index
+            $controllerName = $segments[1] ?? $defaultController;
+            $actionName     = $segments[2] ?? $defaultAction;
+
+            $controllerClass =
+                'modules\\' . $moduleId . '\\controllers\\' . $this->toStudly($controllerName) . 'Controller';
+        } else {
+            // /site/index
+            $controllerName = $segments[0] ?? $defaultController;
+            $actionName     = $segments[1] ?? $defaultAction;
+
+            $controllerClass =
+                'app\\controllers\\' . $this->toStudly($controllerName) . 'Controller';
+        }
 
         $actionMethod = 'action' . $this->toStudly($actionName);
 
-
         if (!class_exists($controllerClass)) {
-            throw new \Exception('Controller not found', 404);
+            throw new \Exception('Controller not found: ' . $controllerClass, 404);
         }
 
         $controller = new $controllerClass();
 
         if (!method_exists($controller, $actionMethod)) {
-            throw new \Exception('Action not found', 404);
+            throw new \Exception('Action not found: ' . $actionMethod, 404);
         }
 
-        // Reflection + параметры (как у тебя сейчас)
+        // Reflection + параметры из $_GET
         $reflection = new \ReflectionMethod($controller, $actionMethod);
         $args = [];
-
         $missing = [];
 
         foreach ($reflection->getParameters() as $param) {
@@ -66,10 +85,7 @@ class Router {
         }
 
         if (!empty($missing)) {
-            throw new \Exception(
-                'Отсутствуют обязательные параметры: ' . implode(', ', $missing),
-                400
-            );
+            throw new \Exception('Отсутствуют обязательные параметры: ' . implode(', ', $missing), 400);
         }
 
         $result = $reflection->invokeArgs($controller, $args);
@@ -79,9 +95,5 @@ class Router {
         }
 
         return $result;
-
     }
-
-
-
 }

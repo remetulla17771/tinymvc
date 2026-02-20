@@ -1,5 +1,5 @@
 <?php
-namespace app\controllers;
+namespace modules\grave\controllers;
 
 use app\Controller;
 use app\helpers\Alert;
@@ -41,7 +41,7 @@ class NewsController extends Controller
         if ($this->request->isPost() && $model->load($this->request->post())) {
             $model->save();
             Alert::add('success', 'Created');
-            return $this->redirect(['/news/index']);
+            return $this->redirect(['/grave/news/index']);
         }
         return $this->render('create', ['model' => $model]);
     }
@@ -53,7 +53,7 @@ class NewsController extends Controller
         if ($this->request->isPost() && $model->load($this->request->post())) {
             $model->save();
             Alert::add('success', 'Updated');
-            return $this->redirect(['/news/view', 'id' => $model->id]);
+            return $this->redirect(['/grave/news/view', 'id' => $model->id]);
         }
         return $this->render('update', ['model' => $model]);
     }
@@ -67,6 +67,6 @@ class NewsController extends Controller
         } else {
             Alert::add('danger', 'Not found');
         }
-        return $this->redirect(['/news/index']);
+        return $this->redirect(['/grave/news/index']);
     }
 }

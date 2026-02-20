@@ -6,15 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="bd9c7475-b5ab-41bc-ba13-39d0d8c58c7b" name="Changes" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/console/ConsoleApplication.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/console/ConsoleApplication.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/console/MakeCrudCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/console/MakeCrudCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/console/stubs/model.stub.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/NewsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/SiteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtime/logs/error.counter" beforeDir="false" afterPath="$PROJECT_DIR$/runtime/logs/error.counter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtime/logs/error.json" beforeDir="false" afterPath="$PROJECT_DIR$/runtime/logs/error.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/news/_form.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/news/create.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/news/index.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/news/update.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/news/view.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/site/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/site/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,31 +69,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Дамир/dist/OpenServer/domains/auth.loc/web/assets/js&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/Дамир/dist/OpenServer/domains/auth.loc/app/modules/assign/layouts",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\app\modules\assign\layouts" />
+      <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\modules\assign\layouts" />
       <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\web\assets\js" />
       <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\web\assets\webfonts" />
       <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\views\error" />
-      <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\views\layouts" />
-      <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\app\messages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\modules\assign\views" />
+      <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\app\modules\assign\views\default" />
       <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\app\vendor\free_hash\js" />
     </key>
   </component>
@@ -105,7 +116,7 @@
       <option name="presentableId" value="Default" />
       <updated>1769597823659</updated>
       <workItem from="1769597825141" duration="93858000" />
-      <workItem from="1771301708879" duration="22356000" />
+      <workItem from="1771301708879" duration="27430000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />

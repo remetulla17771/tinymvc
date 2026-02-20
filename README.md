@@ -385,6 +385,7 @@ app/config/db.local.php
 - `make:crud` — CRUD (контроллер + views) по модели/таблице
 - `make:migration` — Создает файл для миграцию
 - `make:migrate` — Создает таблица на базе данных
+- `make:module` — Создает таблица на базе данных
 
 ### Запуск
 
@@ -424,7 +425,7 @@ php bin/console.php make:model User --table=user
 Генерация CRUD по таблице:
 
 ```bash
-php bin/console.php make:crud Post --table=post
+php bin/console.php make:crud [crudName] [--table=tableName] [--module=moduleName] [--force]
 ```
 
 Создаст:
@@ -439,7 +440,8 @@ php bin/console.php make:crud Post --table=post
 - `--table=...` — **обязательно**
 - `--controller=Имя` — имя контроллера (без `Controller`), например `--controller=AdminPost`
 - `--modelNamespace=app\models` — где искать модель (по умолчанию `app\models`)
-- `--force`
+- `--force` - Перезаписывает
+- `--module` - Генерирует в модуле
 
 > Важно: `make:model` и `make:crud` требуют рабочее подключение к БД (`Db::getInstance()`), иначе не смогут прочитать схему таблицы.
 
@@ -479,6 +481,17 @@ php bin/console.php migrate down 1
 Опции:
 - `--dir=migrations` — папка миграций
 - `--table=migration` — имя таблицы для учёта применённых миграций
+
+
+### make:module
+
+Создает новый модуль
+
+
+```bash
+php bin/console.php make:module moduleName
+```
+
 
 ### Базовый класс Migration
 

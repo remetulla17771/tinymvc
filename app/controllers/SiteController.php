@@ -20,10 +20,10 @@ class SiteController extends Controller {
         $page = (int)$this->request->get('page');
         $page = max(1, $page);
 
-        $query = User::find()->orderBy(['id' => 'DESC']);
+        $query = User::find();
 
         $total = $query->count();
-        $pagination = new Pagination($total, 3, $page);
+        $pagination = new Pagination($total, 10, $page);
 
         $models = $query
             ->limit($pagination->pageSize)

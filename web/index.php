@@ -32,6 +32,26 @@ ErrorHandler::register();
 //    }
 //});
 
+
+//spl_autoload_register(function ($class) {
+//    $map = [
+//        'app\\'     => __DIR__ . '/../app/',
+//        'modules\\' => __DIR__ . '/../modules/',
+//    ];
+//
+//    foreach ($map as $prefix => $baseDir) {
+//        if (strncmp($prefix, $class, strlen($prefix)) !== 0) continue;
+//
+//        $relativeClass = substr($class, strlen($prefix));
+//        $file = $baseDir . str_replace('\\', '/', $relativeClass) . '.php';
+//
+//        if (file_exists($file)) {
+//            require $file;
+//        }
+//        return;
+//    }
+//});
+
 $app = new app\App();
 
 echo $app->run();

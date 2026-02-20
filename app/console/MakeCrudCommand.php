@@ -15,11 +15,12 @@ class MakeCrudCommand implements CommandInterface
     {
         $modelShort = (string)$in->arg(0, '');
         if ($modelShort === '') {
-            $out->line("Usage: php bin/console.php make:crud Post --table=post [--controller=Post] [--force]");
+            $out->line("Usage: php bin/console.php make:crud Post --table=post [--controller=Post] [--module=admin] [--force]");
             return 1;
         }
 
         $force = $in->has('force');
+        $module = (string)$in->opt('module', '');
 
         $modelNamespace = (string)$in->opt('modelNamespace', 'app\\models');
         $modelClass = (strpos($modelShort, '\\') !== false) ? $modelShort : ($modelNamespace . '\\' . $modelShort);
@@ -56,10 +57,37 @@ class MakeCrudCommand implements CommandInterface
 
         $pk = $this->detectPrimaryKey($cols);
 
+        // paths + namespace (module aware)
         $root = dirname(__DIR__, 2); // .../app/console -> project root
-        $controllerFile = $root . DIRECTORY_SEPARATOR . "app/controllers/{$controllerClass}.php";
 
-        $viewsDir = $root . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . $controllerId;
+        if ($module !== '') {
+            if (!preg_match('/^[A-Za-z0-9_]+$/', $module)) {
+                $out->err("Bad module id: $module");
+                return 1;
+            }
+
+            $moduleDir = $root . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . $module;
+            if (!is_dir($moduleDir)) {
+                $out->err("Module not found: modules/$module (create it: php bin/console.php make:module $module)");
+                return 1;
+            }
+
+            $controllerNamespace = "modules\\{$module}\\controllers";
+            $controllerFile = $moduleDir . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . "{$controllerClass}.php";
+
+            $viewsDir = $moduleDir . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . $controllerId;
+
+            // routes should be /admin/<controller>/<action>
+            $routeBase = '/' . $module . '/' . $controllerId;
+        } else {
+            $controllerNamespace = "app\\controllers";
+            $controllerFile = $root . DIRECTORY_SEPARATOR . "app/controllers/{$controllerClass}.php";
+
+            $viewsDir = $root . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . $controllerId;
+
+            $routeBase = '/' . $controllerId;
+        }
+
         $viewIndex  = $viewsDir . DIRECTORY_SEPARATOR . "index.php";
         $viewView   = $viewsDir . DIRECTORY_SEPARATOR . "view.php";
         $viewCreate = $viewsDir . DIRECTORY_SEPARATOR . "create.php";
@@ -67,11 +95,11 @@ class MakeCrudCommand implements CommandInterface
         $viewForm   = $viewsDir . DIRECTORY_SEPARATOR . "_form.php";
 
         // controller code
-        $controllerCode = $this->buildControllerCode($controllerClass, $modelClass, $controllerId, $pk);
+        $controllerCode = $this->buildControllerCode($controllerNamespace, $controllerClass, $modelClass, $routeBase, $pk);
 
-        // views code
-        $indexCode  = $this->buildIndexView($modelClass, $controllerId, $pk, $cols);
-        $viewCode   = $this->buildViewView($modelClass, $controllerId, $pk, $cols);
+        // views code (module aware routes)
+        $indexCode  = $this->buildIndexView($modelClass, $routeBase, $pk, $cols);
+        $viewCode   = $this->buildViewView($modelClass, $routeBase, $pk, $cols);
         $createCode = $this->buildCreateView($modelClass);
         $updateCode = $this->buildUpdateView($modelClass);
         $formCode   = $this->buildFormView($cols, $pk);
@@ -102,10 +130,12 @@ class MakeCrudCommand implements CommandInterface
         return (string)($cols[0]['Field'] ?? 'id');
     }
 
-    private function buildControllerCode(string $controllerClass, string $modelClass, string $controllerId, string $pk): string
+    private function buildControllerCode(string $controllerNamespace, string $controllerClass, string $modelClass, string $routeBase, string $pk): string
     {
+        $modelShort = $this->short($modelClass);
+
         return "<?php\n" .
-            "namespace app\\controllers;\n\n" .
+            "namespace {$controllerNamespace};\n\n" .
             "use app\\Controller;\n" .
             "use app\\helpers\\Alert;\n" .
             "use app\\helpers\\Pagination;\n" .
@@ -119,7 +149,7 @@ class MakeCrudCommand implements CommandInterface
             "        \$pageSize = (int)(\$_GET['per-page'] ?? 10);\n" .
             "        if (\$pageSize < 1) \$pageSize = 10;\n" .
             "        if (\$pageSize > 100) \$pageSize = 100;\n\n" .
-            "        \$query = {$this->short($modelClass)}::find()->orderBy(['{$pk}' => 'DESC']);\n" .
+            "        \$query = {$modelShort}::find()->orderBy(['{$pk}' => 'DESC']);\n" .
             "        \$total = \$query->count();\n" .
             "        \$pagination = new Pagination(\$total, \$pageSize, \$page);\n\n" .
             "        \$models = \$query\n" .
@@ -128,49 +158,48 @@ class MakeCrudCommand implements CommandInterface
             "            ->all();\n\n" .
             "        return \$this->render('index', ['models' => \$models, 'pagination' => \$pagination]);\n" .
             "    }\n\n" .
-
             "    public function actionView(\$id)\n" .
             "    {\n" .
-            "        \$model = {$this->short($modelClass)}::find()->where(['{$pk}' => (int)\$id])->one();\n" .
+            "        \$model = {$modelShort}::find()->where(['{$pk}' => (int)\$id])->one();\n" .
             "        if (!\$model) throw new \\Exception('Not found', 404);\n" .
             "        return \$this->render('view', ['model' => \$model]);\n" .
             "    }\n\n" .
             "    public function actionCreate()\n" .
             "    {\n" .
-            "        \$model = new {$this->short($modelClass)}();\n" .
+            "        \$model = new {$modelShort}();\n" .
             "        if (\$this->request->isPost() && \$model->load(\$this->request->post())) {\n" .
             "            \$model->save();\n" .
             "            Alert::add('success', 'Created');\n" .
-            "            return \$this->redirect(['{$controllerId}/index']);\n" .
+            "            return \$this->redirect(['{$routeBase}/index']);\n" .
             "        }\n" .
             "        return \$this->render('create', ['model' => \$model]);\n" .
             "    }\n\n" .
             "    public function actionUpdate(\$id)\n" .
             "    {\n" .
-            "        \$model = {$this->short($modelClass)}::find()->where(['{$pk}' => (int)\$id])->one();\n" .
+            "        \$model = {$modelShort}::find()->where(['{$pk}' => (int)\$id])->one();\n" .
             "        if (!\$model) throw new \\Exception('Not found', 404);\n" .
             "        if (\$this->request->isPost() && \$model->load(\$this->request->post())) {\n" .
             "            \$model->save();\n" .
             "            Alert::add('success', 'Updated');\n" .
-            "            return \$this->redirect(['{$controllerId}/view', 'id' => \$model->{$pk}]);\n" .
+            "            return \$this->redirect(['{$routeBase}/view', 'id' => \$model->{$pk}]);\n" .
             "        }\n" .
             "        return \$this->render('update', ['model' => \$model]);\n" .
             "    }\n\n" .
             "    public function actionDelete(\$id)\n" .
             "    {\n" .
-            "        \$model = {$this->short($modelClass)}::find()->where(['{$pk}' => (int)\$id])->one();\n" .
+            "        \$model = {$modelShort}::find()->where(['{$pk}' => (int)\$id])->one();\n" .
             "        if (\$model) {\n" .
             "            \$model->delete();\n" .
             "            Alert::add('warning', 'Deleted');\n" .
             "        } else {\n" .
             "            Alert::add('danger', 'Not found');\n" .
             "        }\n" .
-            "        return \$this->redirect(['{$controllerId}/index']);\n" .
+            "        return \$this->redirect(['{$routeBase}/index']);\n" .
             "    }\n" .
             "}\n";
     }
 
-    private function buildIndexView(string $modelClass, string $controllerId, string $pk, array $cols): string
+    private function buildIndexView(string $modelClass, string $routeBase, string $pk, array $cols): string
     {
         $modelShort = $this->short($modelClass);
         $fields = $this->pickIndexColumns($cols, $pk, 6);
@@ -180,29 +209,28 @@ class MakeCrudCommand implements CommandInterface
             $columnsPhp .= "        '{$f}',\n";
         }
 
-        // Action column (без data-confirm, потому что твой Html::a там опасно сделан)
         $columnsPhp .=
             "        [\n" .
             "            'label' => 'Action',\n" .
             "            'value' => function (\$data) {\n" .
             "                \$id = \$data->{$pk};\n" .
-            "                return Html::a('View', ['/$controllerId/view', 'id' => \$id], ['class' => 'btn btn-success btn-sm'])\n" .
-            "                    . ' ' . Html::a('Update', ['/$controllerId/update', 'id' => \$id], ['class' => 'btn btn-warning btn-sm'])\n" .
-            "                    . ' ' . Html::a('Delete', ['/$controllerId/delete', 'id' => \$id], ['class' => 'btn btn-danger btn-sm', 'data-confirm' => \"Are you sure you want to delete this?\"]);\n" .
+            "                return Html::a('View', ['{$routeBase}/view', 'id' => \$id], ['class' => 'btn btn-success btn-sm'])\n" .
+            "                    . ' ' . Html::a('Update', ['{$routeBase}/update', 'id' => \$id], ['class' => 'btn btn-warning btn-sm'])\n" .
+            "                    . ' ' . Html::a('Delete', ['{$routeBase}/delete', 'id' => \$id], ['class' => 'btn btn-danger btn-sm', 'data-confirm' => \"Are you sure you want to delete this?\"]);\n" .
             "            }\n" .
             "        ],\n";
 
         return "<?php\n" .
-            "/** @var \$models {$modelClass}[] */\n\n" .
-            "/** @var \$pagination \app\helpers\Pagination */ \n".
+            "/** @var \$models {$modelClass}[] */\n" .
+            "/** @var \$pagination \\app\\helpers\\Pagination */\n\n" .
             "use app\\helpers\\GridView;\n" .
-            "use app\\helpers\\Html;\n\n" .
+            "use app\\helpers\\Html;\n" .
             "use app\\helpers\\LinkPager;\n\n" .
             "\$this->title = '{$modelShort} list';\n" .
             "?>\n\n" .
             "<h1><?= Html::encode(\$this->title) ?></h1>\n\n" .
             "<p>\n" .
-            "    <?= Html::a('Create {$modelShort}', ['/$controllerId/create'], ['class' => 'btn btn-primary']) ?>\n" .
+            "    <?= Html::a('Create {$modelShort}', ['{$routeBase}/create'], ['class' => 'btn btn-primary']) ?>\n" .
             "</p>\n\n" .
             "<?= GridView::widget([\n" .
             "    'dataProvider' => \$models,\n" .
@@ -210,10 +238,11 @@ class MakeCrudCommand implements CommandInterface
             "    'columns' => [\n" .
             $columnsPhp .
             "    ]\n" .
-            "]); ?>\n";
+            "]); ?>\n\n" .
+            "<?= LinkPager::widget(['pagination' => \$pagination]) ?>\n";
     }
 
-    private function buildViewView(string $modelClass, string $controllerId, string $pk, array $cols): string
+    private function buildViewView(string $modelClass, string $routeBase, string $pk, array $cols): string
     {
         $attrs = "";
         foreach ($cols as $c) {
@@ -230,9 +259,9 @@ class MakeCrudCommand implements CommandInterface
             "?>\n\n" .
             "<h1><?= Html::encode(\$this->title) ?></h1>\n\n" .
             "<p>\n" .
-            "    <?= Html::a('Back', ['/$controllerId/index'], ['class' => 'btn btn-secondary']) ?>\n" .
-            "    <?= Html::a('Update', ['/$controllerId/update', 'id' => \$model->{$pk}], ['class' => 'btn btn-warning']) ?>\n" .
-            "    <?= Html::a('Delete', ['/$controllerId/delete', 'id' => \$model->{$pk}], ['class' => 'btn btn-danger', 'data-confirm' => \"Are you sure you want to delete this?\"]) ?>\n" .
+            "    <?= Html::a('Back', ['{$routeBase}/index'], ['class' => 'btn btn-secondary']) ?>\n" .
+            "    <?= Html::a('Update', ['{$routeBase}/update', 'id' => \$model->{$pk}], ['class' => 'btn btn-warning']) ?>\n" .
+            "    <?= Html::a('Delete', ['{$routeBase}/delete', 'id' => \$model->{$pk}], ['class' => 'btn btn-danger', 'data-confirm' => \"Are you sure you want to delete this?\"]) ?>\n" .
             "</p>\n\n" .
             "<?= DetailView::widget([\n" .
             "    'model' => \$model,\n" .
@@ -242,13 +271,12 @@ class MakeCrudCommand implements CommandInterface
             "]); ?>\n";
     }
 
-
     private function buildCreateView(string $modelClass): string
     {
         $short = $this->short($modelClass);
         return "<?php\n" .
             "/** @var \$model {$modelClass} */\n" .
-            "use app\helpers\Html; \n".
+            "use app\\helpers\\Html;\n\n" .
             "\$this->title = 'Create {$short}';\n" .
             "?>\n\n" .
             "<h1><?= Html::encode(\$this->title) ?></h1>\n\n" .
@@ -260,7 +288,7 @@ class MakeCrudCommand implements CommandInterface
         $short = $this->short($modelClass);
         return "<?php\n" .
             "/** @var \$model {$modelClass} */\n" .
-            "use app\helpers\Html; \n".
+            "use app\\helpers\\Html;\n\n" .
             "\$this->title = 'Update {$short}';\n" .
             "?>\n\n" .
             "<h1><?= Html::encode(\$this->title) ?></h1>\n\n" .
@@ -274,7 +302,6 @@ class MakeCrudCommand implements CommandInterface
             $f = (string)($c['Field'] ?? '');
             if ($f === '' || $f === $pk) continue;
 
-            // не трогаем автоинкремент, даже если pk не id
             $extra = strtolower((string)($c['Extra'] ?? ''));
             if (strpos($extra, 'auto_increment') !== false) continue;
 
@@ -312,7 +339,6 @@ class MakeCrudCommand implements CommandInterface
     private function pickIndexColumns(array $cols, string $pk, int $max): array
     {
         $out = [];
-        // pk первым
         $out[] = $pk;
 
         foreach ($cols as $c) {
@@ -320,7 +346,6 @@ class MakeCrudCommand implements CommandInterface
             if ($f === '' || $f === $pk) continue;
 
             $type = strtolower((string)($c['Type'] ?? ''));
-            // длинные тексты в гриде обычно не нужны
             if (strpos($type, 'text') !== false || strpos($type, 'blob') !== false) continue;
 
             $out[] = $f;

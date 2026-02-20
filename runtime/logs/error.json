@@ -1,5 +1,230 @@
 [
     {
+        "id": 659,
+        "time": "2026-02-20 08:37:55",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found: app\\controllers\\{MODULE}Controller",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 61
+    },
+    {
+        "id": 658,
+        "time": "2026-02-20 08:35:03",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found: modules\\graves\\controllers\\SiteController",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 61
+    },
+    {
+        "id": 657,
+        "time": "2026-02-20 08:34:59",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found: modules\\graves\\controllers\\SiteController",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 61
+    },
+    {
+        "id": 656,
+        "time": "2026-02-20 08:33:39",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found: modules\\graves\\controllers\\SiteController",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 61
+    },
+    {
+        "id": 655,
+        "time": "2026-02-20 08:33:37",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found: modules\\graves\\controllers\\SiteController",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 61
+    },
+    {
+        "id": 654,
+        "time": "2026-02-20 08:33:20",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found: modules\\graves\\controllers\\SiteController",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 61
+    },
+    {
+        "id": 653,
+        "time": "2026-02-20 08:32:29",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found: modules\\graves\\controllers\\SiteController",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 61
+    },
+    {
+        "id": 652,
+        "time": "2026-02-20 08:29:09",
+        "code": 404,
+        "type": "Exception",
+        "message": "Action not found: actionIndexgf",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 67
+    },
+    {
+        "id": 651,
+        "time": "2026-02-20 08:10:25",
+        "code": 404,
+        "type": "Exception",
+        "message": "Action not found: actionRecursion",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 67
+    },
+    {
+        "id": 650,
+        "time": "2026-02-20 08:10:22",
+        "code": 404,
+        "type": "Exception",
+        "message": "Action not found: actionAbout",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 67
+    },
+    {
+        "id": 649,
+        "time": "2026-02-20 08:09:45",
+        "code": 0,
+        "type": "Exception",
+        "message": "Layout not found: W:\\domains\\auth.loc\\app\/..\/modules\/assign\/views\/layouts\/main.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 76
+    },
+    {
+        "id": 648,
+        "time": "2026-02-20 08:09:41",
+        "code": 0,
+        "type": "Exception",
+        "message": "Layout not found: W:\\domains\\auth.loc\\app\/..\/modules\/assign\/views\/layouts\/main.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 76
+    },
+    {
+        "id": 647,
+        "time": "2026-02-20 08:09:31",
+        "code": 0,
+        "type": "Exception",
+        "message": "Layout not found: W:\\domains\\auth.loc\\app\/..\/modules\/assign\/views\/layouts\/main.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 76
+    },
+    {
+        "id": 646,
+        "time": "2026-02-20 08:09:28",
+        "code": 0,
+        "type": "Exception",
+        "message": "Layout not found: W:\\domains\\auth.loc\\app\/..\/modules\/assign\/views\/layouts\/main.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 76
+    },
+    {
+        "id": 645,
+        "time": "2026-02-20 08:08:54",
+        "code": 0,
+        "type": "Exception",
+        "message": "Layout not found: W:\\domains\\auth.loc\\app\/..\/modules\/assign\/views\/layouts\/main.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 76
+    },
+    {
+        "id": 644,
+        "time": "2026-02-20 08:08:01",
+        "code": 500,
+        "type": "Exception",
+        "message": "Не найден вид: W:\\domains\\auth.loc\\app\/..\/modules\/assign\/views\/default\/index.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 50
+    },
+    {
+        "id": 643,
+        "time": "2026-02-20 08:07:11",
+        "code": 500,
+        "type": "Exception",
+        "message": "Не найден вид: W:\\domains\\auth.loc\\app\/..\/modules\/assign\/views\/default\/index.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 50
+    },
+    {
+        "id": 642,
+        "time": "2026-02-20 08:07:03",
+        "code": 500,
+        "type": "Exception",
+        "message": "Не найден вид: W:\\domains\\auth.loc\\app\/..\/modules\/assign\/views\/default\/index.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 50
+    },
+    {
+        "id": 641,
+        "time": "2026-02-20 08:07:02",
+        "code": 500,
+        "type": "Exception",
+        "message": "Не найден вид: W:\\domains\\auth.loc\\app\/..\/modules\/assign\/views\/default\/index.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 50
+    },
+    {
+        "id": 640,
+        "time": "2026-02-20 08:06:27",
+        "code": 500,
+        "type": "Exception",
+        "message": "Не найден вид: W:\\domains\\auth.loc\\app\/..\/modules\/assign\/views\/default\/index.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 50
+    },
+    {
+        "id": 639,
+        "time": "2026-02-20 08:06:22",
+        "code": 404,
+        "type": "Exception",
+        "message": "Action not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 125
+    },
+    {
+        "id": 638,
+        "time": "2026-02-20 08:05:29",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 119
+    },
+    {
+        "id": 637,
+        "time": "2026-02-20 08:04:39",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 119
+    },
+    {
+        "id": 636,
+        "time": "2026-02-20 08:04:35",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 119
+    },
+    {
+        "id": 635,
+        "time": "2026-02-20 08:03:39",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 119
+    },
+    {
         "id": 634,
         "time": "2026-02-18 07:37:38",
         "code": 0,

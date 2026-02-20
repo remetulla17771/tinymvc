@@ -6,10 +6,31 @@ class Controller extends App
 {
     public string $layout = 'main';
 
+    protected function getModuleId(): ?string
+    {
+        $ref = new \ReflectionClass($this);
+        $ns = $ref->getNamespaceName(); // modules\admin\controllers или app\controllers
+
+        if (strpos($ns, 'modules\\') !== 0) {
+            return null;
+        }
+
+        $parts = explode('\\', $ns); // ['modules','admin','controllers']
+        return $parts[1] ?? null;
+    }
+
+    protected function getBaseViewPath(): string
+    {
+        $moduleId = $this->getModuleId();
+        if ($moduleId) {
+            return __DIR__ . "/../modules/{$moduleId}/views";
+        }
+        return __DIR__ . "/../views";
+    }
+
     protected function createUrl(array $route): string
     {
         $path = trim($route[0], '/');
-
         unset($route[0]);
 
         if (!empty($route)) {
@@ -32,7 +53,6 @@ class Controller extends App
     public function render(string $view, array $params = []): string
     {
         $content = $this->renderView($view, $params);
-
         return $this->renderLayout($content);
     }
 
@@ -42,14 +62,11 @@ class Controller extends App
             str_replace('Controller', '', (new \ReflectionClass($this))->getShortName())
         );
 
-
-        $viewFile = __DIR__ . "/../views/{$controller}/{$view}.php";
+        $base = $this->getBaseViewPath();
+        $viewFile = $base . "/{$controller}/{$view}.php";
 
         if (!file_exists($viewFile)) {
-            throw new \Exception(
-                'Не найден вид: ' . $viewFile,
-                500
-            );
+            throw new \Exception('Не найден вид: ' . $viewFile, 500);
         }
 
         extract($params, EXTR_SKIP);
@@ -66,7 +83,14 @@ class Controller extends App
 
     protected function renderLayout(string $content): string
     {
-        $layoutFile = __DIR__ . "/../views/layouts/$this->layout.php";
+        // сначала layout модуля, если контроллер из модуля
+        $base = $this->getBaseViewPath();
+        $layoutFile = $base . "/layouts/{$this->layout}.php";
+
+        // если нет — глобальный layout
+        if (!file_exists($layoutFile)) {
+            $layoutFile = __DIR__ . "/../views/layouts/{$this->layout}.php";
+        }
 
         if (!file_exists($layoutFile)) {
             throw new \Exception("Layout not found: {$layoutFile}");
@@ -76,6 +100,4 @@ class Controller extends App
         require $layoutFile;
         return ob_get_clean();
     }
-
-
 }

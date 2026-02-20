@@ -12,6 +12,14 @@ class User extends ActiveRecord implements Auth
         return 'user';
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'login' => 'Логин',
+            'password' => 'Пароль'
+        ];
+    }
+
     /* ========== Identity ========== */
 
     public static function findIdentity($id)

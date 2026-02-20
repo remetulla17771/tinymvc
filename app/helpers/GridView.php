@@ -4,6 +4,9 @@ namespace app\helpers;
 
 class GridView
 {
+    protected static $dataProviderView;
+
+
     public static function widget(array $config = []): string
     {
         if (!isset($config['dataProvider'])) {
@@ -14,6 +17,8 @@ class GridView
         $dataProvider = $config['dataProvider'];
         $options      = $config['options'] ?? ['class' => 'table table-bordered'];
         $pagination = $config['pagination'] ?? null;
+
+        self::$dataProviderView = $dataProvider;
 
         $optionsString = self::renderOptions($options);
 
@@ -33,11 +38,21 @@ class GridView
     {
         $html = "<thead><tr>";
 
+        $labels = [];
+        $labelModel = self::$dataProviderView[0];
+        if ($labelModel && method_exists($labelModel, 'attributeLabels')) {
+            $labels = (array)$labelModel->attributeLabels();
+        }
+
         foreach ($attributes as $attr) {
+
+
             if (is_string($attr)) {
-                $label = ucfirst($attr);
+                $attribute = $attr;
+                $label = $labels[$attribute] ?? ucfirst($attribute);
             } else {
-                $label = $attr['label'] ?? ucfirst($attr['attribute']);
+                $attribute = $attr['attribute'] ?? '';
+                $label = $attr['label'] ?? ($labels[$attribute] ?? ucfirst($attribute));
             }
 
             $html .= "<th>{$label}</th>";

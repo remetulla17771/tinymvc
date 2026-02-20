@@ -3,6 +3,7 @@ namespace app\helpers;
 
 class DetailView
 {
+    protected static $dataProviderView;
     public static function widget(array $config): string
     {
         if (!isset($config['model'])) {
@@ -11,21 +12,26 @@ class DetailView
 
         $model = $config['model'];
         $attributes = $config['attributes'] ?? [];
-
         $rows = '';
+
+        $labels = [];
+        if ($model && method_exists($model, 'attributeLabels')) {
+            $labels = (array)$model->attributeLabels();
+        }
 
         foreach ($attributes as $attr) {
 
             // simple: 'username'
             if (is_string($attr)) {
-                $label = ucfirst($attr);
+                $attribute = $attr;
+                $label = $labels[$attribute] ?? ucfirst($attribute);
                 $value = self::getValue($model, $attr);
             }
 
             // extended config
             elseif (is_array($attr)) {
                 $attribute = $attr['attribute'];
-                $label = $attr['label'] ?? ucfirst($attribute);
+                $label = $labels[$attribute] ?? ucfirst($attribute);
 
                 if (isset($attr['value']) && is_callable($attr['value'])) {
                     $value = call_user_func($attr['value'], $model);

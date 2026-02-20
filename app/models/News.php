@@ -17,6 +17,14 @@ class News extends ActiveRecord
         return 'news';
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'user_id' => 'Пользователь',
+            'title' => 'Название'
+        ];
+    }
+
 //    public function getUser()
 //    {
 //        return $this->hasOne(User::class, ['id' => $this->user_id]);

@@ -1,5 +1,149 @@
 [
     {
+        "id": 728,
+        "time": "2026-02-20 13:48:47",
+        "code": 0,
+        "type": "Error",
+        "message": "Cannot use object of type app\\models\\News as array",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\DetailView.php",
+        "line": 20
+    },
+    {
+        "id": 727,
+        "time": "2026-02-20 13:48:14",
+        "code": 0,
+        "type": "Error",
+        "message": "Cannot use object of type app\\models\\News as array",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\DetailView.php",
+        "line": 20
+    },
+    {
+        "id": 726,
+        "time": "2026-02-20 13:39:10",
+        "code": 0,
+        "type": "ArgumentCountError",
+        "message": "ReflectionClassConstant::__construct() expects exactly 2 parameters, 1 given",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\GridView.php",
+        "line": 44
+    },
+    {
+        "id": 725,
+        "time": "2026-02-20 13:38:57",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Array to string conversion",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\GridView.php",
+        "line": 44
+    },
+    {
+        "id": 724,
+        "time": "2026-02-20 13:38:53",
+        "code": 0,
+        "type": "ParseError",
+        "message": "syntax error, unexpected ';', expecting ')'",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\GridView.php",
+        "line": 44
+    },
+    {
+        "id": 723,
+        "time": "2026-02-20 13:38:39",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Array to string conversion",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\GridView.php",
+        "line": 44
+    },
+    {
+        "id": 722,
+        "time": "2026-02-20 13:37:56",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "get_class() expects parameter 1 to be object, array given",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\GridView.php",
+        "line": 44
+    },
+    {
+        "id": 721,
+        "time": "2026-02-20 13:37:43",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "get_class() expects parameter 1 to be object, array given",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\GridView.php",
+        "line": 44
+    },
+    {
+        "id": 720,
+        "time": "2026-02-20 13:37:41",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "get_class() expects parameter 1 to be object, array given",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\GridView.php",
+        "line": 44
+    },
+    {
+        "id": 719,
+        "time": "2026-02-20 13:37:17",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "get_called_class() expects exactly 0 parameters, 1 given",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\GridView.php",
+        "line": 44
+    },
+    {
+        "id": 718,
+        "time": "2026-02-20 13:37:04",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "get_class() expects parameter 1 to be object, array given",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\GridView.php",
+        "line": 44
+    },
+    {
+        "id": 717,
+        "time": "2026-02-20 13:36:33",
+        "code": 0,
+        "type": "Error",
+        "message": "Call to a member function attributeLabels() on array",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\GridView.php",
+        "line": 45
+    },
+    {
+        "id": 716,
+        "time": "2026-02-20 13:36:01",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Trying to get property 'attributeLabels' of non-object",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\GridView.php",
+        "line": 45
+    },
+    {
+        "id": 715,
+        "time": "2026-02-20 13:26:45",
+        "code": 0,
+        "type": "ParseError",
+        "message": "syntax error, unexpected '{', expecting identifier (T_STRING) or namespace (T_NAMESPACE) or \\\\ (T_NS_SEPARATOR)",
+        "file": "W:\\domains\\auth.loc\\app\\ActiveRecord.php",
+        "line": 6
+    },
+    {
+        "id": 714,
+        "time": "2026-02-20 13:08:41",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Declaration of app\\helpers\\ActiveForm::dropdown($model, $attribute, $items = Array, $options = Array) should be compatible with app\\helpers\\Html::dropdown($name, $items = Array, $options = Array)",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\ActiveForm.php",
+        "line": 58
+    },
+    {
+        "id": 713,
+        "time": "2026-02-20 13:04:25",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Declaration of app\\helpers\\ActiveForm::dropdown($model, $attribute, $items = Array, $options = Array) should be compatible with app\\helpers\\Html::dropdown($name, $items = Array, $options = Array)",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\ActiveForm.php",
+        "line": 56
+    },
+    {
         "id": 712,
         "time": "2026-02-20 12:17:53",
         "code": 500,

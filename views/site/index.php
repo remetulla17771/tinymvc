@@ -29,7 +29,6 @@ use app\helpers\Modal;
                 return Html::tag('input', $data->id, [
                     'class' => 'form-checkbox',
                     'type' => 'checkbox',
-                    'id' => 'user_' . $data->id,
                     'value' => $data->id
                 ]);
             }
@@ -42,9 +41,9 @@ use app\helpers\Modal;
             'value' => function ($data) {
                 $news = $data->news;
 
-                if($news){
+                if ($news) {
                     $str = '';
-                    foreach ($news as $n){
+                    foreach ($news as $n) {
 
                         $str .= $n->id . ") " . $n->title . '<br>';
 

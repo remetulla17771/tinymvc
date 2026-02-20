@@ -4,6 +4,7 @@ use app\Controller;
 use app\helpers\Alert;
 use app\helpers\MetaTagManager;
 use app\helpers\Pagination;
+use app\models\News;
 use app\models\User;
 use app\Response;
 

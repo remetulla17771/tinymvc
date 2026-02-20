@@ -11,21 +11,41 @@
 
 - **Front Controller**: единая точка входа `web/index.php`.
 - **Routing**: `/{controller}/{action}` + параметры через `$_GET` (Reflection).
+- **Modules**: префикс в URL `/{module}/{controller}/{action}` (пример: `/admin/site/index`).
 - **MVC**: контроллеры в `app/controllers`, view в `views/<controller>`, layout в `views/layouts`.
 - **Компоненты** (мини DI-контейнер): создаются из `app/config/web.php` и доступны как свойства `$this->user`, `$this->urlManager`, `$this->lang`, `$this->response`, и т.д.
 - **DB**: PDO singleton (`app/Db.php`).
-- **ActiveRecord**: базовый CRUD + `Query` (`where()`, `one()`, `all()`).
+- **ActiveRecord**: базовый CRUD + `Query` (`where()`, `one()`, `all()`, `limit/offset/orderBy/count`).
 - **Response**: HTML/JSON/redirect, с `send()`.
 - **i18n**: переводы в `app/messages/<lang>/<category>.php` (`ru`, `kk`, `pr`).
 - **Ошибки**: `ErrorHandler` ловит exception/error/fatal, пишет логи в `runtime/logs`.
+- **Console Gii**: генераторы кода через `bin/console.php`.
 
 ---
 
 ## Требования
 
-- PHP **8.0+**
+- PHP **7.4+**
 - Apache + `mod_rewrite` (или nginx с rewrite на `web/index.php`)
 - MySQL/MariaDB (если используешь модели с БД)
+- Composer (рекомендуется)
+
+---
+
+## Установка (Composer)
+
+В корне проекта:
+
+```bash
+composer install
+composer dump-autoload -o
+```
+
+Убедись, что в `web/index.php` и `bin/console.php` подключён autoload:
+
+```php
+require __DIR__ . '/../vendor/autoload.php';
+```
 
 ---
 
@@ -51,7 +71,6 @@ app/
   controllers/
     SiteController.php
     ErrorController.php
-    MoreController.php
   console/
     ConsoleApplication.php
     CommandInterface.php
@@ -63,12 +82,15 @@ app/
     MakeCrudCommand.php
     MakeMigrationCommand.php
     MigrateCommand.php
+    MakeModuleCommand.php
   helpers/
     I18n.php
     Html.php
     ActiveForm.php
     GridView.php
     DetailView.php
+    LinkPager.php
+    Pagination.php
     Alert.php
     Modal.php
     Session.php
@@ -79,11 +101,21 @@ app/
     BootstrapAsset.php
     FontAwesomeAsset.php
 
+modules/
+  admin/
+    Module.php
+    controllers/
+      SiteController.php
+    views/
+      layouts/
+        main.php
+      site/
+        index.php
+
 views/
   layouts/
     main.php
     error.php
-    new.php
   site/
     index.php
     view.php
@@ -106,12 +138,12 @@ runtime/
 
 ## Быстрый старт (OpenServer / Apache)
 
-1) Размести проект в домене (например `free_hash.loc`).
-2) **DocumentRoot должен быть `.../free_hash/web`** (важно).
+1) Размести проект в домене (например `tinymvc.loc`).
+2) **DocumentRoot должен быть `.../tinymvc/web`** (важно).
 3) Проверь, что `.htaccess` работает (mod_rewrite включён).
 
 Открой:
-- `http://free_hash.loc/` → по умолчанию `site/index`
+- `http://tinymvc.loc/` → по умолчанию `site/index`
 
 ### `web/.htaccess`
 
@@ -139,6 +171,7 @@ RewriteRule ^ index.php [L]
 
 3) `Router::resolve()`:
    - определяет `controller/action` по сегментам URL
+   - если первый сегмент совпадает с папкой в `modules/` — это **module**
    - вызывает `Controller::actionX(...)` через Reflection
    - если action вернул `Response` → вызывает `send()`
 
@@ -149,13 +182,13 @@ RewriteRule ^ index.php [L]
 Формат:
 
 - `/{controller}/{action}`
+- `/{module}/{controller}/{action}`
 - параметры action берутся из `$_GET` по имени параметра
 
-Пример:
+Примеры:
 
 - `/site/view?id=5` → `SiteController::actionView($id)`
-
-Если в action есть обязательный параметр, а в `$_GET` его нет — будет ошибка **400**.
+- `/admin/site/index` → `modules\admin\controllers\SiteController::actionIndex()`
 
 ---
 
@@ -193,6 +226,10 @@ class SiteController extends Controller
 - View: `views/<controller>/<view>.php`
 - Layout: `views/layouts/main.php` (по умолчанию)
 
+Для модулей:
+- View: `modules/<module>/views/<controller>/<view>.php`
+- Layout: `modules/<module>/views/layouts/main.php`
+
 Рендер из контроллера:
 - `render($view, $params)` — view + layout
 - `renderPartial($view, $params)` — только view
@@ -215,19 +252,11 @@ return [
 ];
 ```
 
-После этого внутри контроллера/вью доступны:
-- `$this->user`
-- `$this->urlManager`
-- `$this->response`
-- `$this->lang`
-- `$this->session`
-
 ---
 
 ## i18n (переводы)
 
-Файлы переводов: `app/messages/<lang>/<category>.php`  
-Доступные языки в проекте: `ru`, `kk`, `pr`.
+Файлы: `app/messages/<lang>/<category>.php` (`ru`, `kk`, `pr`).
 
 Использование:
 
@@ -236,17 +265,6 @@ use app\App;
 
 echo App::$app->t('app', 'Hello');
 ```
-
-Или напрямую:
-
-```php
-use app\helpers\I18n;
-
-echo I18n::t('app', 'Hello');
-```
-
-Язык хранится в `$_SESSION['lang']`. В `Router::resolve()` он берётся из:
-- `$_GET['lang']` или `$_SESSION['lang']`, иначе `ru`.
 
 ---
 
@@ -264,130 +282,11 @@ return [
 ];
 ```
 
-**Важно:** не храни реальные пароли в git. Вынеси в `db.local.php` и добавь в `.gitignore`.
-
-### Db (PDO)
-
-```php
-$pdo = \app\Db::getInstance();
-```
-
-### ActiveRecord
-
-Модель:
-
-```php
-namespace app\models;
-
-use app\ActiveRecord;
-
-class User extends ActiveRecord
-{
-    public static function tableName(): string
-    {
-        return 'user';
-    }
-}
-```
-
-Примеры:
-
-```php
-$users = User::find()->all();
-$user  = User::findOne(5);
-
-$user = new User();
-$user->load(['login' => 'admin', 'password' => '123']);
-$user->save();
-
-$user->delete();
-```
-
-### Query
-
-```php
-User::find()->where(['login' => 'admin'])->one();
-User::find()->where(['token' => 123])->all();
-```
+> Важно: не храни реальные пароли в git. Вынеси в `.env`/`db.local.php` и добавь в `.gitignore`.
 
 ---
 
-## Response (HTML / JSON / Redirect)
-
-Если action возвращает объект `Response`, роутер сам вызовет `send()`.
-
-Пример:
-
-```php
-use app\Response;
-
-return Response::json(['ok' => true]);
-```
-
----
-
-## Ошибки и логи
-
-`ErrorHandler` регистрируется в `web/index.php` и ловит:
-
-- исключения (`set_exception_handler`)
-- php-ошибки (`set_error_handler`)
-- fatal на shutdown (`register_shutdown_function`)
-
-Логи:
-- `runtime/logs/error.json`
-- `runtime/logs/error.counter`
-
-Страницы ошибок:
-- `views/error/error.php`
-- `views/error/trace.php`
-
----
-
-## Безопасность
-
-Сейчас в проекте встречается **plain-text** работа с паролями (простое сравнение строк). Для реального проекта:
-- используй `password_hash()` / `password_verify()`
-- вынеси секреты (DB, токены) из репозитория
-- исключи логи и конфиги из git
-
-Рекомендуемый `.gitignore`:
-
-```gitignore
-/vendor/
-node_modules/
-
-runtime/logs/
-app/config/db.local.php
-.env
-
-*.db
-```
-
----
-
-## Известные проблемы (то, что реально стоит исправить)
-1) Несостыковка языков:
-   - В layout есть переключатель `ru/kk`
-   - В `UrlManager::$languages` указаны `ru/en/kz`, а папка переводов — `kk`  
-     Рекомендуется привести всё к одному набору (`ru/kk`).
-
-2) Дать 777 права на все файлы
----
-
-
-## Console Gii (консольный генератор кода)
-
-В проекте есть консольная утилита, которая генерирует заготовки кода “как Yii2 Gii”, но **без веб-интерфейса**:
-
-- `make:controller` — контроллер + папка views
-- `make:model` — ActiveRecord модель по таблице
-- `make:crud` — CRUD (контроллер + views) по модели/таблице
-- `make:migration` — Создает файл для миграцию
-- `make:migrate` — Создает таблица на базе данных
-- `make:module` — Создает таблица на базе данных
-
-### Запуск
+## Console Gii (консольные генераторы)
 
 Показать список команд:
 
@@ -399,70 +298,67 @@ php bin/console.php help
 
 ```bash
 php bin/console.php make:controller Site
+# или в модуль:
+php bin/console.php make:controller Site --module=admin
 ```
 
-Создаст:
-- `app/controllers/SiteController.php`
-- `views/site/index.php`
-
-Опции:
-- `--force` — перезаписать файлы, если уже существуют.
-
 ### make:model
-
-Генерация модели по таблице (используется `DESCRIBE`):
 
 ```bash
 php bin/console.php make:model User --table=user
 ```
 
-Создаст:
-- `app/models/User.php`
-
-
 ### make:crud
 
-Генерация CRUD по таблице:
-
 ```bash
-php bin/console.php make:crud [crudName] [--table=tableName] [--module=moduleName] [--force]
+php bin/console.php make:crud User --table=user
+# CRUD внутрь модуля:
+php bin/console.php make:crud User --table=user --module=admin --force
 ```
 
-Создаст:
-- `app/controllers/PostController.php`
-- `views/post/index.php`
-- `views/post/view.php`
-- `views/post/create.php`
-- `views/post/update.php`
-- `views/post/_form.php`
-
 Опции:
-- `--table=...` — **обязательно**
-- `--controller=Имя` — имя контроллера (без `Controller`), например `--controller=AdminPost`
-- `--modelNamespace=app\models` — где искать модель (по умолчанию `app\models`)
-- `--force` - Перезаписывает
-- `--module` - Генерирует в модуле
+- `--table=...` — обязательно (если модель не умеет `tableName()`).
+- `--controller=Имя` — имя контроллера (без `Controller`).
+- `--modelNamespace=app\models` — где искать модель (по умолчанию `app\models`).
+- `--module=admin` — генерирует **внутрь `modules/admin`** и строит ссылки `/admin/<controller>/<action>`.
+- `--force` — перезаписать файлы.
 
 > Важно: `make:model` и `make:crud` требуют рабочее подключение к БД (`Db::getInstance()`), иначе не смогут прочитать схему таблицы.
 
 ---
 
+## Модули
+
+### make:module
+
+Создаёт модуль со стартовым контроллером/вьюшкой/лейаутом:
+
+```bash
+php bin/console.php make:module admin
+```
+
+Создаст:
+- `modules/admin/Module.php`
+- `modules/admin/controllers/SiteController.php`
+- `modules/admin/views/layouts/main.php`
+- `modules/admin/views/site/index.php`
+
+Проверка:
+- открой `/admin/site/index`
+
+---
+
+## Миграции
 
 ### make:migration
 
-Создаёт файл миграции в папке `migrations/`.
+Создаёт файл миграции в папке `migrations/`:
 
 ```bash
 php bin/console.php make:migration create_user_table
 ```
 
-Результат: файл вида `migrations/mYYMMDD_HHMMSS_create_user_table.php`.
-
-Опции:
-- `--dir=migrations` — папка миграций (по умолчанию `migrations`)
-- `--force` — перезаписать файл, если уже существует
-
-### make:migrate
+### migrate
 
 Применяет/откатывает миграции. Состояние хранится в таблице `migration` (по умолчанию).
 
@@ -482,20 +378,9 @@ php bin/console.php migrate down 1
 - `--dir=migrations` — папка миграций
 - `--table=migration` — имя таблицы для учёта применённых миграций
 
-
-### make:module
-
-Создает новый модуль
-
-
-```bash
-php bin/console.php make:module moduleName
-```
-
-
 ### Базовый класс Migration
 
-Файл: `app/Migration.php`. В миграциях доступны хелперы, чтобы не писать “портянки” SQL:
+Файл: `app/Migration.php`. В миграциях доступны хелперы:
 
 - `createTable($table, $columns, $options)`
 - `dropTable($table)`
@@ -504,45 +389,29 @@ php bin/console.php make:module moduleName
 - `createIndex($name, $table, $columns, $unique=false)`
 - `dropIndex($name, $table)`
 
-Типы (строители строк):
+Типы:
 - `$this->pk()`, `$this->int()`, `$this->bool()`, `$this->string($len)`, `$this->text()`, `$this->datetime()`, `$this->timestamp()`, `$this->decimal($p,$s)`
 - модификаторы: `$this->notNull()`, `$this->defaultValue($v)`, `$this->defaultExpr('CURRENT_TIMESTAMP')`
 
-Пример миграции (создание таблицы `user` + уникальный индекс):
-
-```php
-<?php
-declare(strict_types=1);
-
-use app\Migration;
-
-class m250217_120000_create_user_table extends Migration
-{
-    public function up(): void
-    {
-        $this->createTable('user', [
-            'id' => $this->pk(),
-            'login' => $this->string(64) . ' ' . $this->notNull(),
-            'password_hash' => $this->string(255) . ' ' . $this->notNull(),
-            'created_at' => $this->timestamp() . ' ' . $this->notNull() . ' ' . $this->defaultExpr('CURRENT_TIMESTAMP'),
-        ]);
-
-        $this->createIndex('ux_user_login', 'user', 'login', true);
-    }
-
-    public function down(): void
-    {
-        $this->dropIndex('ux_user_login', 'user');
-        $this->dropTable('user');
-    }
-}
-```
-
-> Важно: имя класса в твоём файле будет другое (с твоим timestamp). Оставляй имя класса как сгенерировалось, меняй только содержимое `up()` / `down()`.
-
-
 ---
 
+## Безопасность
+
+Сейчас в проекте может встречаться **plain-text** работа с паролями. Для реального проекта:
+- используй `password_hash()` / `password_verify()`
+- вынеси секреты (DB, токены) из репозитория
+- исключи логи и конфиги из git
+
+Рекомендуемый `.gitignore`:
+
+```gitignore
+/vendor/
+runtime/logs/
+.env
+app/config/db.local.php
+```
+
+---
 
 ## Лицензия
 

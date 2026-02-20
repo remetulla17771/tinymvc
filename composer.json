@@ -6,7 +6,8 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "ext-pdo": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "fakerphp/faker": "^1.24"
   },
   "autoload": {
     "psr-4": {

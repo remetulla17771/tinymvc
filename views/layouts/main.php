@@ -20,7 +20,7 @@ MetaTagManager::register(['name' => 'description', 'content' => 'Desc']);
     <title><?= $this->title ?> | <?= $this->t('app', 'hello') ?> | <?= $this->urlManager->controller ?></title>
     <?php (new AppAsset)->registerCss(); ?>
 </head>
-<body class="d-flex flex-column h-80">
+<body class="d-flex flex-column h-100">
 
 
 <header>
@@ -56,11 +56,14 @@ MetaTagManager::register(['name' => 'description', 'content' => 'Desc']);
     ?>
 </header>
 
-<main class="container" style="height: 100vh; margin-top: 80px;">
+<main class="flex-shrink-0" style="margin-top: 80px;" role="main">
 
-    <?= Alert::getAll() ?>
+    <div class="container">
+        <?= Alert::getAll() ?>
 
-    <?= $content ?>
+        <?= $content ?>
+    </div>
+
 </main>
 
 

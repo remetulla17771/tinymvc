@@ -22,6 +22,5 @@ $this->title = 'View';
         'user_id',
         'title',
         'content',
-
     ],
 ]); ?>

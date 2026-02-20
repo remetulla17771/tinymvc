@@ -7,7 +7,7 @@ use app\helpers\Pagination;
 use app\models\News;
 use app\models\User;
 use app\Response;
-
+use Faker\Factory;
 
 
 class SiteController extends Controller {
@@ -33,6 +33,24 @@ class SiteController extends Controller {
             'models' => $models,
             'pagination' => $pagination,
         ]);
+    }
+
+
+    public function actionGen()
+    {
+
+        $faker = Factory::create();
+
+        for ($i = 0; $i < 5; $i++){
+
+            $model = new News();
+
+            $model->user_id = 8;
+            $model->title = $faker->title();
+            $model->content = $faker->text(150);
+            $model->save();
+
+        }
     }
 
     public function actionView($id)

@@ -238,8 +238,7 @@ class MakeCrudCommand implements CommandInterface
             "    'columns' => [\n" .
             $columnsPhp .
             "    ]\n" .
-            "]); ?>\n\n" .
-            "<?= LinkPager::widget(['pagination' => \$pagination]) ?>\n";
+            "]); ?>\n\n";
     }
 
     private function buildViewView(string $modelClass, string $routeBase, string $pk, array $cols): string

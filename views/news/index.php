@@ -22,6 +22,7 @@ $this->title = 'News list';
         'id',
         'user_id',
         'title',
+        'content',
         [
             'label' => 'Action',
             'value' => function ($data) {
@@ -34,4 +35,3 @@ $this->title = 'News list';
     ]
 ]); ?>
 
-<?= LinkPager::widget(['pagination' => $pagination]) ?>

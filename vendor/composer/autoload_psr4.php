@@ -8,4 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'modules\\' => array($baseDir . '/modules'),
     'app\\' => array($baseDir . '/app'),
+    'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
+    'Faker\\' => array($vendorDir . '/fakerphp/faker/src/Faker'),
 );

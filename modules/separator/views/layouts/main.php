@@ -9,7 +9,7 @@ use app\helpers\NavBar;
 
 ?>
 <!DOCTYPE html>
-<html lang="<?= $this->lang->language() ?>">
+<html lang="<?= $this->language->get() ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,11 +25,11 @@ use app\helpers\NavBar;
 
     new NavBar([
         'brandLabel' => $this->config('appName'),
-        'brandUrl' => '/',
+        'brandUrl' => '/site/index',
         'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top'],
         'ulClass' => 'navbar-nav navbar-collapse justify-content-end nav',
         'items' => [
-            ['label' => 'Home', 'url' => '/'],
+            ['label' => 'Home', 'url' => '/separator/site/index'],
             $this->user->isGuest() ? ['label' => 'Login', 'url' => '/site/login'] : ['label' => $this->user->identity('login') . " (Logout)", 'url' => '/site/logout']
         ],
     ]);

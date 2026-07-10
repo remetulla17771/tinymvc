@@ -41,8 +41,8 @@ class Router
 
         if ($isModule) {
             // /admin/site/index
-            $controllerName = $segments[1] ?? $defaultController;
-            $actionName     = $segments[2] ?? $defaultAction;
+            $controllerName = $segments[1] ?? 'default';
+            $actionName     = $segments[2] ?? 'index';
 
             $controllerClass =
                 'modules\\' . $moduleId . '\\controllers\\' . $this->toStudly($controllerName) . 'Controller';

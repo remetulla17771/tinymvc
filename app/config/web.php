@@ -15,11 +15,14 @@ return [
         'arrayHelper' => [
             'class' => '\app\helpers\ArrayHelper'
         ],
-        'lang' => [
+        'language' => [
             'class' => '\app\helpers\I18n'
         ],
         'session' => [
             'class' => '\app\helpers\Session'
+        ],
+        'stringer' => [
+            'class' => '\app\Request'
         ]
     ],
     'alias' => [

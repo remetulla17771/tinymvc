@@ -1,5 +1,356 @@
 [
     {
+        "id": 771,
+        "time": "2026-07-10 15:46:00",
+        "code": 500,
+        "type": "Exception",
+        "message": "Не найден вид: W:\\domains\\auth.loc\\app\/..\/modules\/separator\/views\/default\/index.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 69
+    },
+    {
+        "id": 770,
+        "time": "2026-07-10 15:43:26",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: modules\\senator\\controllers\\DefaultController::$lang",
+        "file": "W:\\domains\\auth.loc\\modules\\senator\\views\\layouts\\main.php",
+        "line": 12
+    },
+    {
+        "id": 769,
+        "time": "2026-07-10 15:43:20",
+        "code": 500,
+        "type": "Exception",
+        "message": "Не найден вид: W:\\domains\\auth.loc\\app\/..\/modules\/senator\/views\/default\/index.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 69
+    },
+    {
+        "id": 768,
+        "time": "2026-07-10 15:43:01",
+        "code": 500,
+        "type": "Exception",
+        "message": "Не найден вид: W:\\domains\\auth.loc\\app\/..\/modules\/senator\/views\/default\/index.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 69
+    },
+    {
+        "id": 767,
+        "time": "2026-07-10 15:43:00",
+        "code": 500,
+        "type": "Exception",
+        "message": "Не найден вид: W:\\domains\\auth.loc\\app\/..\/modules\/senator\/views\/default\/index.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 69
+    },
+    {
+        "id": 766,
+        "time": "2026-07-10 15:42:43",
+        "code": 404,
+        "type": "Exception",
+        "message": "Controller not found: modules\\senator\\controllers\\DefaultController",
+        "file": "W:\\domains\\auth.loc\\app\\Router.php",
+        "line": 61
+    },
+    {
+        "id": 765,
+        "time": "2026-07-10 13:28:50",
+        "code": 500,
+        "type": "Error",
+        "message": "Maximum function nesting level of '256' reached, aborting!",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\AssetBundle.php",
+        "line": 12
+    },
+    {
+        "id": 764,
+        "time": "2026-07-10 13:28:50",
+        "code": 0,
+        "type": "Error",
+        "message": "Maximum function nesting level of '256' reached, aborting!",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\AssetBundle.php",
+        "line": 12
+    },
+    {
+        "id": 763,
+        "time": "2026-07-10 13:13:45",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: app\\controllers\\ErrorController::$lang",
+        "file": "W:\\domains\\auth.loc\\views\\layouts\\main.php",
+        "line": 15
+    },
+    {
+        "id": 762,
+        "time": "2026-07-10 13:13:45",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: app\\controllers\\SiteController::$lang",
+        "file": "W:\\domains\\auth.loc\\views\\layouts\\main.php",
+        "line": 15
+    },
+    {
+        "id": 761,
+        "time": "2026-07-10 13:13:26",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: app\\controllers\\ErrorController::$lang",
+        "file": "W:\\domains\\auth.loc\\views\\layouts\\main.php",
+        "line": 15
+    },
+    {
+        "id": 760,
+        "time": "2026-07-10 13:13:26",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: app\\controllers\\SiteController::$lang",
+        "file": "W:\\domains\\auth.loc\\views\\layouts\\main.php",
+        "line": 15
+    },
+    {
+        "id": 759,
+        "time": "2026-07-10 13:13:08",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: app\\controllers\\ErrorController::$lang",
+        "file": "W:\\domains\\auth.loc\\views\\layouts\\main.php",
+        "line": 15
+    },
+    {
+        "id": 758,
+        "time": "2026-07-10 13:13:08",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: app\\controllers\\SiteController::$lang",
+        "file": "W:\\domains\\auth.loc\\views\\layouts\\main.php",
+        "line": 15
+    },
+    {
+        "id": 757,
+        "time": "2026-07-10 13:12:55",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: app\\controllers\\ErrorController::$lang",
+        "file": "W:\\domains\\auth.loc\\views\\layouts\\main.php",
+        "line": 15
+    },
+    {
+        "id": 756,
+        "time": "2026-07-10 13:12:55",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: app\\controllers\\SiteController::$lang",
+        "file": "W:\\domains\\auth.loc\\views\\site\\index.php",
+        "line": 18
+    },
+    {
+        "id": 755,
+        "time": "2026-07-10 13:12:20",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: app\\controllers\\ErrorController::$lang",
+        "file": "W:\\domains\\auth.loc\\views\\layouts\\main.php",
+        "line": 15
+    },
+    {
+        "id": 754,
+        "time": "2026-07-10 13:12:20",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: app\\controllers\\SiteController::$lang",
+        "file": "W:\\domains\\auth.loc\\views\\layouts\\main.php",
+        "line": 15
+    },
+    {
+        "id": 753,
+        "time": "2026-07-10 13:12:10",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Undefined property: app\\controllers\\SiteController::$language",
+        "file": "W:\\domains\\auth.loc\\views\\site\\index.php",
+        "line": 18
+    },
+    {
+        "id": 752,
+        "time": "2026-07-10 13:11:34",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Accessing static property app\\App::$language as non static",
+        "file": "W:\\domains\\auth.loc\\app\\App.php",
+        "line": 34
+    },
+    {
+        "id": 751,
+        "time": "2026-07-10 13:10:05",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Accessing static property app\\App::$language as non static",
+        "file": "W:\\domains\\auth.loc\\app\\App.php",
+        "line": 30
+    },
+    {
+        "id": 750,
+        "time": "2026-07-10 13:09:43",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Accessing static property app\\App::$language as non static",
+        "file": "W:\\domains\\auth.loc\\app\\App.php",
+        "line": 30
+    },
+    {
+        "id": 749,
+        "time": "2026-07-10 13:09:39",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Accessing static property app\\App::$language as non static",
+        "file": "W:\\domains\\auth.loc\\app\\App.php",
+        "line": 30
+    },
+    {
+        "id": 748,
+        "time": "2026-07-10 13:08:47",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Accessing static property app\\App::$language as non static",
+        "file": "W:\\domains\\auth.loc\\app\\App.php",
+        "line": 30
+    },
+    {
+        "id": 747,
+        "time": "2026-07-10 13:08:37",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Accessing static property app\\controllers\\SiteController::$language as non static",
+        "file": "W:\\domains\\auth.loc\\views\\site\\index.php",
+        "line": 17
+    },
+    {
+        "id": 746,
+        "time": "2026-07-10 13:08:32",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Accessing static property app\\App::$language as non static",
+        "file": "W:\\domains\\auth.loc\\app\\App.php",
+        "line": 30
+    },
+    {
+        "id": 745,
+        "time": "2026-07-10 13:08:27",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Accessing static property app\\App::$language as non static",
+        "file": "W:\\domains\\auth.loc\\app\\App.php",
+        "line": 30
+    },
+    {
+        "id": 744,
+        "time": "2026-07-10 13:08:07",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Accessing static property app\\App::$language as non static",
+        "file": "W:\\domains\\auth.loc\\app\\App.php",
+        "line": 30
+    },
+    {
+        "id": 743,
+        "time": "2026-07-10 13:07:03",
+        "code": 500,
+        "type": "ErrorException",
+        "message": "Accessing static property app\\App::$language as non static",
+        "file": "W:\\domains\\auth.loc\\app\\App.php",
+        "line": 30
+    },
+    {
+        "id": 742,
+        "time": "2026-07-09 16:43:15",
+        "code": 500,
+        "type": "Exception",
+        "message": "Не найден вид: W:\\domains\\auth.loc\\app\/..\/modules\/senator\/views\/site\/index.php",
+        "file": "W:\\domains\\auth.loc\\app\\Controller.php",
+        "line": 69
+    },
+    {
+        "id": 741,
+        "time": "2026-04-14 11:50:14",
+        "code": 0,
+        "type": "ParseError",
+        "message": "syntax error, unexpected '<', expecting end of file",
+        "file": "W:\\domains\\auth.loc\\views\\site\\index.php",
+        "line": 94
+    },
+    {
+        "id": 740,
+        "time": "2026-04-14 11:07:49",
+        "code": 0,
+        "type": "Error",
+        "message": "Cannot use object of type app\\models\\News as array",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\Tab.php",
+        "line": 20
+    },
+    {
+        "id": 739,
+        "time": "2026-04-14 11:07:05",
+        "code": 0,
+        "type": "Error",
+        "message": "Cannot use object of type app\\models\\News as array",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\Tab.php",
+        "line": 20
+    },
+    {
+        "id": 738,
+        "time": "2026-04-14 11:07:03",
+        "code": 0,
+        "type": "Error",
+        "message": "Cannot use object of type app\\models\\News as array",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\Tab.php",
+        "line": 20
+    },
+    {
+        "id": 737,
+        "time": "2026-04-14 11:06:54",
+        "code": 0,
+        "type": "Error",
+        "message": "Cannot use object of type app\\models\\News as array",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\Tab.php",
+        "line": 20
+    },
+    {
+        "id": 736,
+        "time": "2026-04-14 11:06:44",
+        "code": 0,
+        "type": "Error",
+        "message": "Cannot use object of type app\\models\\News as array",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\Tab.php",
+        "line": 20
+    },
+    {
+        "id": 735,
+        "time": "2026-04-01 15:32:26",
+        "code": 0,
+        "type": "Error",
+        "message": "Class name must be a valid object or a string",
+        "file": "W:\\domains\\auth.loc\\views\\news\\_form.php",
+        "line": 9
+    },
+    {
+        "id": 734,
+        "time": "2026-04-01 15:32:03",
+        "code": 0,
+        "type": "Error",
+        "message": "Class name must be a valid object or a string",
+        "file": "W:\\domains\\auth.loc\\views\\news\\_form.php",
+        "line": 9
+    },
+    {
+        "id": 733,
+        "time": "2026-03-26 11:22:02",
+        "code": 0,
+        "type": "TypeError",
+        "message": "Argument 3 passed to app\\helpers\\ArrayHelper::map() must be of the type string, object given, called in W:\\domains\\auth.loc\\views\\news\\_form.php on line 12",
+        "file": "W:\\domains\\auth.loc\\app\\helpers\\ArrayHelper.php",
+        "line": 56
+    },
+    {
         "id": 732,
         "time": "2026-02-20 14:53:43",
         "code": 500,

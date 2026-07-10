@@ -12,11 +12,25 @@ use app\helpers\Html;
 use app\helpers\Modal;
 
 
-//$this->dd($models);
 ?>
 
 <div>
-    Language: <?= $this->lang->language() ?>
+    Language: <?= $this->language->get() ?>
+</div>
+
+<div>
+
+    <?= \app\helpers\Tab::widget([
+        [
+            'name' => 'Main',
+            'content' => 'lorem ipsum',
+        ],
+        [
+            'name' => 'More',
+            'content' => 'lorem ipsum More',
+        ]
+    ]) ?>
+
 </div>
 
 <?= GridView::widget([
@@ -34,8 +48,8 @@ use app\helpers\Modal;
             }
         ],
         'id',
-        'login',
-        'password',
+        'title',
+        'content',
         [
             'label' => 'News',
             'value' => function ($data) {
@@ -73,6 +87,7 @@ use app\helpers\Modal;
 ]);
 ?>
 
+<?= \app\helpers\ElevenLabsAgent::widget("agent_7001kp5fqdq6fktb7vc1wz9c54ze") ?>
 
 <div>
     <button class="btn btn-primary" modal-id="modal_1">Open modal with ajax</button>
@@ -99,8 +114,13 @@ Modal window 2
 <script>
     document.querySelectorAll('.form-checkbox').forEach(ch => {
         ch.addEventListener('change', () => {
-            const selected = [...document.querySelectorAll('.form-checkbox:checked')].map(c => c.value);
+            const selected = selectedAll('id');
             console.log(selected);
         });
     });
+
+    function selectedAll() {
+        return [...document.querySelectorAll('.form-checkbox:checked')].map(c => parseInt(c.value));
+    }
+
 </script>

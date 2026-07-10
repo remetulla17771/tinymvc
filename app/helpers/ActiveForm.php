@@ -31,13 +31,10 @@ class ActiveForm
         $inputType = isset($options['type']) ? $options['type'] : 'text';
         $value = $model->$attribute;
 
-        $optionsStr = '';
-        foreach ($options as $key => $value) {
-            $optionsStr .= "$key=\"$value\" ";
-        }
+        $attributes = self::renderAttributes($options);
 
         return "
-            <div class=\"form-group\" $optionsStr>
+            <div class=\"form-group\" $attributes>
                 <label for=\"$attribute\">$label</label>
                 <input type=\"$inputType\" id=\"$attribute\" name=\"$attribute\" value=\"$value\" class=\"form-control\">
             </div>
@@ -46,11 +43,8 @@ class ActiveForm
 
     public static function submitButton($label = 'Submit', $options = [])
     {
-        $optionsStr = '';
-        foreach ($options as $key => $value) {
-            $optionsStr .= "$key=\"$value\" ";
-        }
-        return "<button type=\"submit\" $optionsStr>$label</button>";
+        $attributes = self::renderAttributes($options);
+        return "<button type=\"submit\" $attributes>$label</button>";
     }
 
     public static function dropdown($model, $attribute, $items = [], $options = [])

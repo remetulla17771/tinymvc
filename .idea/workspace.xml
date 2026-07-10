@@ -6,23 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="bd9c7475-b5ab-41bc-ba13-39d0d8c58c7b" name="Changes" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/auth.loc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/auth.loc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/console/MakeCrudCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/console/MakeCrudCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/SiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/App.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ErrorHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ErrorHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/BootstrapAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/BootstrapAsset.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/console/MakeControllerCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/console/MakeControllerCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/console/MakeModuleCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/console/MakeModuleCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/ActiveForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/ActiveForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/I18n.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/I18n.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/messages/ru/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/messages/ru/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ff.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtime/logs/error.counter" beforeDir="false" afterPath="$PROJECT_DIR$/runtime/logs/error.counter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtime/logs/error.json" beforeDir="false" afterPath="$PROJECT_DIR$/runtime/logs/error.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/layouts/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/news/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/news/_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/news/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/news/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/news/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/news/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/site/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/site/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +33,15 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="136" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -57,7 +60,70 @@
     &quot;accountId&quot;: &quot;3400715b-e490-4b84-bbe9-50ec215858a4&quot;
   }
 }</component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="4.867841244218749E-91" />
+      <entry key="S5" value="1.1093543656999875E-36" />
+      <entry key="S10" value="1.5567061673455837E-18" />
+      <entry key="S30" value="2.431764470972082E-6" />
+      <entry key="S60" value="0.0036429102910224115" />
+      <entry key="M2" value="0.1761198755373052" />
+      <entry key="M5" value="2.0336175532824345" />
+      <entry key="M10" value="4.703271769012065" />
+      <entry key="M15" value="6.270135395166929" />
+      <entry key="M30" value="9.689127687058678" />
+      <entry key="H1" value="18.487769838674218" />
+      <entry key="H2" value="32.810960025883666" />
+      <entry key="H4" value="46.50768579983966" />
+      <entry key="D1" value="64.71217932525575" />
+      <entry key="W1" value="69.18042274523809" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.0" />
+      <entry key="M5" value="1.0000000003983527" />
+      <entry key="M10" value="1.0000398971127025" />
+      <entry key="M15" value="1.001853235927518" />
+      <entry key="M30" value="1.0860934299030585" />
+      <entry key="H1" value="1.5868250257354695" />
+      <entry key="H2" value="2.532084470409319" />
+      <entry key="H4" value="3.47554571494986" />
+      <entry key="D1" value="4.692567380748512" />
+      <entry key="W1" value="4.954561538806244" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.0022748702860712023" />
+      <entry key="MS500" value="0.2960679029634081" />
+      <entry key="S2" value="0.7376457285414196" />
+      <entry key="S5" value="0.8853992153391853" />
+      <entry key="S10" value="0.9409565427474242" />
+      <entry key="S30" value="0.9799206923366748" />
+      <entry key="S60" value="0.993533908776119" />
+      <entry key="M2" value="1.1704141410231226" />
+      <entry key="M5" value="3.0279051970850417" />
+      <entry key="M10" value="5.697792242494209" />
+      <entry key="M15" value="7.267254605305964" />
+      <entry key="M30" value="10.771984032398278" />
+      <entry key="H1" value="20.072305318707997" />
+      <entry key="H2" value="35.34142960326447" />
+      <entry key="H4" value="49.98220805269932" />
+      <entry key="D1" value="69.40453130684114" />
+      <entry key="W1" value="74.13495214762948" />
+    </decayedShown>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php\php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/psr/container" />
@@ -76,29 +142,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Дамир/dist/OpenServer/domains/auth.loc/app/modules/assign/layouts&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/Дамир/dist/OpenServer/domains/auth.loc",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc" />
       <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\app\modules\assign\layouts" />
       <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\modules\assign\layouts" />
       <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\web\assets\js" />
       <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\web\assets\webfonts" />
-      <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\views\error" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Дамир\dist\OpenServer\domains\auth.loc\modules\assign\views" />
@@ -109,8 +180,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.26775.23" />
-        <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.26775.23" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-PS-261.24374.185" />
+        <option value="bundled-php-predefined-a98d8de5180a-6bbb74dbab74-com.jetbrains.php.sharedIndexes-PS-261.24374.185" />
       </set>
     </attachedChunks>
   </component>
@@ -124,7 +195,11 @@
       <updated>1769597823659</updated>
       <workItem from="1769597825141" duration="93858000" />
       <workItem from="1771301708879" duration="37860000" />
-      <workItem from="1771588668667" duration="458000" />
+      <workItem from="1771588668667" duration="1323000" />
+      <workItem from="1772106245568" duration="3533000" />
+      <workItem from="1773980619861" duration="2033000" />
+      <workItem from="1774513220918" duration="14020000" />
+      <workItem from="1783602666166" duration="6109000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -147,6 +222,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding privacy" />

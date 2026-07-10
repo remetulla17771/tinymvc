@@ -17,5 +17,8 @@ class BootstrapAsset extends AssetBundle
         'bootstrap/jquery.js', // Example of using a CDN
         'bootstrap/popper.js', // Example of using a CDN
         'bootstrap/bootstrap.js', // Example of using a CDN
+        'bootstrap/bootstrap.bundle.min.js',
     ];
+
+
 }

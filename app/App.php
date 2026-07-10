@@ -11,7 +11,7 @@ class App
     /**
      * @var mixed|null
      */
-    public static $language;
+
     public Request $request;
     public Router $router;
 
@@ -30,6 +30,7 @@ class App
             $this->$key = new $value['class']();
 
         }
+
 
 //
 //        $this->controller = $this->request->getSegments()[0];
@@ -67,7 +68,7 @@ class App
 
     public static function powered()
     {
-        return '<a href="https://vk.com/deepn9x">Yii2 MVC Clone App</a>';
+        return '<a href="https://vk.com/deepn9x">deepn9x</a>';
     }
 
     public function run()

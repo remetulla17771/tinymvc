@@ -23,12 +23,12 @@ class MakeModuleCommand implements CommandInterface
 
         $this->ensureDir($moduleDir . '/controllers');
         $this->ensureDir($moduleDir . '/views/layouts');
-        $this->ensureDir($moduleDir . '/views/site');
+        $this->ensureDir($moduleDir . '/views/default');
 
         $modulePhp = $moduleDir . '/Module.php';
-        $siteController = $moduleDir . '/controllers/SiteController.php';
+        $siteController = $moduleDir . '/controllers/DefaultController.php';
         $layoutMain = $moduleDir . '/views/layouts/main.php';
-        $siteIndex = $moduleDir . '/views/site/index.php';
+        $siteIndex = $moduleDir . '/views/default/index.php';
 
         $moduleCode =
             "<?php\n\n" .
@@ -42,7 +42,7 @@ class MakeModuleCommand implements CommandInterface
             "<?php\n\n" .
             "namespace modules\\{$id}\\controllers;\n\n" .
             "use app\\Controller;\n\n" .
-            "class SiteController extends Controller\n" .
+            "class DefaultController extends Controller\n" .
             "{\n" .
             "    public function actionIndex()\n" .
             "    {\n" .
@@ -62,7 +62,7 @@ use app\helpers\NavBar;
 
 ?>
 <!DOCTYPE html>
-<html lang="<?= $this->lang->language() ?>">
+<html lang="<?= $this->language->get() ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -115,7 +115,7 @@ PHP;
 
         $viewCode =
             "<h1>Module '{$id}' works</h1>\n" .
-            "<p>Open: <code>/{$id}/site/index</code></p>\n";
+            "<p>Open: <code>/{$id}/default/index</code></p>\n";
 
         $this->writeFile($modulePhp, $moduleCode, $force);
         $this->writeFile($siteController, $controllerCode, $force);

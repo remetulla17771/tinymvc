@@ -16,7 +16,7 @@ class MakeControllerCommand implements CommandInterface
             return 1;
         }
 
-        $class = preg_replace('/Controller$/', '', $name) . 'Controller';
+        $class = ucfirst(preg_replace('/Controller$/', '', $name)) . 'Controller';
         $controllerId = strtolower(preg_replace('/Controller$/', '', $class));
 
         $root = dirname(__DIR__, 2); // .../app/console -> root

@@ -20,6 +20,12 @@ class I18n
         return self::$language;
     }
 
+    public function get()
+    {
+        self::$language = $_SESSION['lang'];
+        return self::$language;
+    }
+
 
     public static function t(string $category, string $message, array $params = []): string
     {

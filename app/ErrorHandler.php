@@ -91,7 +91,7 @@ class ErrorHandler
         http_response_code(500);
         if (self::$handling) {
             http_response_code(500);
-            echo 'Critical error';
+            echo 'Critical error: ' . $e->getMessage();
             exit;
         }
 

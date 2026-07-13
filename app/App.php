@@ -97,9 +97,9 @@ class App
     // ------------------------
     // Методы для alias
     // ------------------------
-    public function getAlias($key)
+    public static function getAlias($key)
     {
-        return $this->config('alias')[$key] ?? null;
+        return (new App)->config($key)[$key] ?? null;
     }
 
 

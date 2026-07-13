@@ -16,7 +16,11 @@
     }
   },
   "scripts": {
-    "console": "php bin/console.php"
+    "console": "php bin/console.php",
+    "post-create-project-cmd": [
+      "php -r \"if (!file_exists('config/main-local.php') && file_exists('config/main-local.example.php')) copy('config/main-local.example.php', 'config/main-local.php');\"",
+      "php -r \"@mkdir('runtime', 0777, true);\""
+    ]
   },
   "config": {
     "allow-plugins": {

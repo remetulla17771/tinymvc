@@ -1,0 +1,32 @@
+{
+  "name": "remetulla/tinymvc-php",
+  "description": "Mini MVC framework in Yii2 style",
+  "type": "project",
+  "license": "Apache-2.0",
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "fakerphp/faker": "^1.24",
+    "php-flasher/flasher-symfony": "^1.15"
+  },
+  "autoload": {
+    "psr-4": {
+      "app\\": "app/",
+      "modules\\": "modules/"
+    }
+  },
+  "scripts": {
+    "console": "php bin/console.php",
+    "post-create-project-cmd": [
+      "php -r \"if (!file_exists('config/main-local.php') && file_exists('config/main-local.example.php')) copy('config/main-local.example.php', 'config/main-local.php');\"",
+      "php -r \"@mkdir('runtime', 0777, true);\""
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "contao-components/installer": true,
+      "php-http/discovery": true
+    }
+  }
+}

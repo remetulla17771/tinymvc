@@ -31,6 +31,8 @@ class Router
 
         $moduleId = $segments[0] ?? null;
         $isModule = false;
+        $isVendor = false;
+        $modulesDir = null;
 
         if ($moduleId && preg_match('/^[A-Za-z0-9_]+$/', $moduleId)) {
             $modulesDir = __DIR__ . '/../modules/' . $moduleId;
@@ -39,6 +41,7 @@ class Router
             }
         }
 
+
         if ($isModule) {
             // /admin/site/index
             $controllerName = $segments[1] ?? 'default';
@@ -46,7 +49,9 @@ class Router
 
             $controllerClass =
                 'modules\\' . $moduleId . '\\controllers\\' . $this->toStudly($controllerName) . 'Controller';
-        } else {
+        }
+
+        else {
             // /site/index
             $controllerName = $segments[0] ?? $defaultController;
             $actionName     = $segments[1] ?? $defaultAction;

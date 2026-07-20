@@ -51,7 +51,7 @@ use app\helpers\NavBar;
 <main class="container" style="height: 100vh; margin-top: 80px;">
 
     <?= Alert::getAll() ?>
-
+    admin\layout\app
     <?= $content ?>
 </main>
 

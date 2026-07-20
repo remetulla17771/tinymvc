@@ -41,6 +41,7 @@ class App
         }
 
 
+
 //
 //        $this->controller = $this->request->getSegments()[0];
 //        $this->action = $this->request->getSegments()[1];

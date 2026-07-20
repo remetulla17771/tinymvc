@@ -55,3 +55,4 @@ ErrorHandler::register();
 $app = new app\App();
 
 echo $app->run();
+

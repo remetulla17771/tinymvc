@@ -1,4 +1,5 @@
 <?php
+
 namespace app\controllers;
 
 use app\Controller;
@@ -8,6 +9,18 @@ use app\models\News;
 
 class NewsController extends Controller
 {
+
+//    public function actions()
+//    {
+//        return [
+//            'delete-multiple' => [
+//                'method' => 'post',
+//                'function' => function () {
+//
+//                }
+//            ]
+//        ];
+//    }
     public function actionIndex()
     {
         $page = (int)($_GET['page'] ?? 1);
@@ -26,6 +39,21 @@ class NewsController extends Controller
             ->all();
 
         return $this->render('index', ['models' => $models, 'pagination' => $pagination]);
+    }
+
+    public function actionDeleteMultiple()
+    {
+
+        $data = $this->request->rawData();
+
+        foreach ($data['ids'] as $id) {
+            $model = News::findOne($id);
+            $model->delete();
+        }
+
+        return $this->response->json(['success' => true]);
+
+
     }
 
     public function actionView($id)

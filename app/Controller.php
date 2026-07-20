@@ -102,4 +102,9 @@ class Controller extends App
         return new \ReflectionClass($this);
     }
 
+    public function actions()
+    {
+        return [];
+    }
+
 }

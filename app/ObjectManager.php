@@ -1,8 +1,10 @@
 <?php
 
+namespace app;
 class ObjectManager
 {
-    public function __construct(array $config = []) {
+    public function __construct(array $config = [])
+    {
         foreach ($config as $prop => $val) {
             // Проверяем, можно ли записать это свойство
             if (property_exists($this, $prop)) {

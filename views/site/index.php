@@ -124,3 +124,33 @@ Modal window 2
     }
 
 </script>
+
+<script>
+
+    class User {
+        // Необязательно, но можно объявить свойство (Public Field)
+        name;
+
+        // Исправлено: constructor пишется именно так
+        constructor(name) {
+            this.name = name;
+        }
+
+        setName(name) {
+            this.name = name;
+        }
+    }
+
+    class BankAccount {
+        amount
+        // Конструктор для инициализации пользователя в аккаунте
+        constructor(user) {
+            this.user = user;
+        }
+
+        setAmount(amount){
+            this.amount = amount
+        }
+    }
+
+</script>

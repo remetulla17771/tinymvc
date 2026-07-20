@@ -50,6 +50,55 @@ if(modals){
     })
 }
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Выбрать / Снять все чекбоксы
+    document.addEventListener('change', function(e) {
+        if (e.target.classList.contains('js-select-all')) {
+            const table = e.target.closest('table');
+            const checkboxes = table.querySelectorAll('.js-checkbox-row');
+            checkboxes.forEach(cb => cb.checked = e.target.checked);
+        }
+    });
+
+    // Обработка кнопки "Удалить выбранные"
+    document.addEventListener('click', function(e) {
+        console.log(e.target.classList.contains('js-delete-selected'))
+        if (e.target.classList.contains('js-delete-selected')) {
+            const btn = e.target;
+            const container = btn.closest('div').nextElementSibling; // находим таблицу рядом
+            const selected = Array.from(container.querySelectorAll('.js-checkbox-row:checked'))
+                .map(cb => cb.value);
+
+            if (selected.length === 0) {
+                alert('Выберите хотя бы одну запись для удаления.');
+                return;
+            }
+
+            if (!confirm('Вы уверены, что хотите удалить выбранные записи?')) {
+                return;
+            }
+
+            console.log(btn.dataset.url)
+
+            // AJAX запрос (Vanilla JS / fetch)
+            fetch(btn.dataset.url, {
+                method: 'POST',
+                body: JSON.stringify({ ids: selected })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert(data.message || 'Ошибка при удалении');
+                    }
+                })
+                .catch(() => alert('Сетевая ошибка при запросе.'));
+        }
+    });
+});
+
 String.prototype.reverseString = function () {
     return this.split('').reverse().join('');
 

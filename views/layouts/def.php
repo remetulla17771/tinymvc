@@ -6,6 +6,10 @@ use app\helpers\Alert;
 use app\helpers\MetaTagManager;
 use app\helpers\NavBar;
 
+
+MetaTagManager::register(['name' => 'description', 'content' => 'Desc']);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="<?= $this->language->get() ?>">
@@ -13,22 +17,26 @@ use app\helpers\NavBar;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= MetaTagManager::render() ?>
-    <title><?= $this->title ?></title>
+    <title><?= $this->title ?> | <?= $this->t('app', 'hello') ?> | <?= $this->urlManager->controller ?></title>
     <?php (new AppAsset)->registerCss(); ?>
 </head>
-<body class="d-flex flex-column h-80">
+<body class="d-flex flex-column h-100">
 
 
 <header>
     <?php
 
+
     new NavBar([
         'brandLabel' => $this->config('appName'),
-        'brandUrl' => '/site/index',
-        'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top'],
+        'brandUrl' => '/',
+        'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top', 'ember' => 'fff'],
         'ulClass' => 'navbar-nav navbar-collapse justify-content-end nav',
         'items' => [
-            ['label' => 'Home', 'url' => '/admin/site/index'],
+            ['label' => 'Home', 'url' => '/'],
+            ['label' => 'About', 'url' => '/site/about'],
+            ['label' => 'Create', 'url' => '/site/add'],
+            ['label' => 'Recursion', 'url' => '/site/recursion'],
             [
                 'label' => 'Lang ('.$this->language->get().")",
                 'items' => [
@@ -48,18 +56,21 @@ use app\helpers\NavBar;
     ?>
 </header>
 
-<main class="container" style="height: 100vh; margin-top: 80px;">
+<main class="flex-shrink-0" style="margin-top: 80px;" role="main">
 
-    <?= Alert::getAll() ?>
+    <div class="container">
+        <?= Alert::getAll() ?>
 
-    <?= $content ?>
+        <?= $content ?>
+    </div>
+
 </main>
 
 
 <footer id="footer" class="mt-auto py-2 bg-light">
     <div class="container">
         <div class="row text-muted">
-            <div class="col-md-6 text-center text-md-start">&copy; <?= date('Y') ?> My MVC App</p></div>
+            <div class="col-md-6 text-center text-md-start">&copy; <?= date('Y') ?> TinyMVC </p></div>
             <div class="col-md-6 text-center text-md-end"><?= App::powered() ?></div>
         </div>
     </div>

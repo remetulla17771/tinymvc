@@ -34,6 +34,12 @@ return [
             ]
         ]
     ],
+    'modules' => [
+        'admin' => [
+            'class' => 'modules\admin\Module',
+            'layout' => 'admin',
+        ]
+    ],
     'alias' => [
         '@web' => '/',
         '@uploads' => '/uploads/'

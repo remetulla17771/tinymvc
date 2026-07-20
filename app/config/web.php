@@ -25,14 +25,6 @@ return [
         'stringer' => [
             'class' => '\app\Request'
         ],
-        'flasher' => [
-            'class' => '\Flasher\Prime\Flasher',
-            'options' => [
-                'defaultHandler' => 'flasher',
-                'responseManager' => '',
-                'storageManager' => ''
-            ]
-        ]
     ],
     'modules' => [
         'admin' => [

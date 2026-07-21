@@ -1,10 +1,12 @@
 <?php
 namespace app\helpers;
 
-class DetailView
+use app\WidgetManager;
+
+class DetailView extends WidgetManager
 {
     protected static $dataProviderView;
-    public static function widget(array $config): string
+    public static function widget($config): string
     {
         if (!isset($config['model'])) {
             throw new \InvalidArgumentException('DetailView: model is required');

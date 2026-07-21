@@ -2,11 +2,13 @@
 
 namespace app\helpers;
 
-class Tab
+use app\WidgetManager;
+
+class Tab extends WidgetManager
 {
-    public static function widget(array $items, array $options = []): string
+    public static function widget($options)
     {
-        if (empty($items)) return '';
+        if (empty($options['items'])) return '';
 
         $id = $options['id'] ?? ('tab_' . substr(md5((string)mt_rand()), 0, 8));
 
@@ -16,7 +18,7 @@ class Tab
         $nav = "<ul class=\"{$ulClass}\" id=\"{$id}\" role=\"tablist\">";
         $content = "<div class=\"{$contentClass}\" id=\"{$id}_content\">";
 
-        foreach (array_values($items) as $i => $item) {
+        foreach (array_values($options['items']) as $i => $item) {
             $name = (string)($item['name'] ?? ('Tab ' . ($i + 1)));
             $tabId = $id . '_tab_' . $i;
             $paneId = $id . '_pane_' . $i;

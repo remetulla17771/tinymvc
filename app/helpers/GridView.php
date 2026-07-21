@@ -2,12 +2,15 @@
 
 namespace app\helpers;
 
-class GridView
+use app\ObjectManager;
+use app\WidgetManager;
+
+class GridView extends WidgetManager
 {
     protected static $dataProviderView;
     protected static $moreDelete;
 
-    public static function widget(array $config = []): string
+    public static function widget($config)
     {
         if (!isset($config['dataProvider'])) {
             throw new \InvalidArgumentException('GridView: dataProvider is required');

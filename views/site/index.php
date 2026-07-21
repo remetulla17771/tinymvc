@@ -21,14 +21,16 @@ use app\helpers\Modal;
 <div>
 
     <?= \app\helpers\Tab::widget([
-        [
-            'name' => 'Main',
-            'content' => 'lorem ipsum',
-        ],
-        [
-            'name' => 'More',
-            'content' => 'lorem ipsum More',
-        ]
+       'items' => [
+           [
+               'name' => 'Main',
+               'content' => 'lorem ipsum',
+           ],
+           [
+               'name' => 'More',
+               'content' => 'lorem ipsum More',
+           ]
+       ]
     ]) ?>
 
 </div>

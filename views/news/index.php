@@ -1,5 +1,6 @@
 <?php
 /** @var $models app\models\News[] */
+
 /** @var $pagination \app\helpers\Pagination */
 
 use app\helpers\GridView;
@@ -18,8 +19,7 @@ $this->title = 'News list';
 <?= GridView::widget([
     'dataProvider' => $models,
     'pagination' => $pagination,
-    'selectableDelete' => true,
-    'deleteUrl' => '/news/delete-multiple',
+
     'columns' => [
         'id',
         'user_id',
@@ -35,4 +35,3 @@ $this->title = 'News list';
         ],
     ]
 ]); ?>
-

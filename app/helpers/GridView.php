@@ -20,7 +20,7 @@ class GridView
         $moreDelete   = $config['selectableDelete'] ?? false;
 
         // Имя первичного ключа для чекбоксов (по умолчанию 'id')
-        $primaryKey   = $config['primaryKey'] ?? 'id';
+        $primaryKey   = $config['selectableDelete']['primaryKey'] ?? 'id';
 
         self::$dataProviderView = $dataProvider;
         self::$moreDelete = $moreDelete;
@@ -31,11 +31,13 @@ class GridView
 
         // Панель с кнопкой удаления
         if ($moreDelete) {
-            $deleteUrl = $config['deleteUrl'] ?? '/admin/delete-multiple'; // Укажи свой URL
+            $deleteUrl = $config['selectableDelete']['url'];
             $html .= '<div class="mb-2">';
             $html .= '<button type="button" class="btn btn-danger btn-sm js-delete-selected" data-url="' . htmlspecialchars($deleteUrl) . '">Удалить выбранные</button>';
             $html .= '</div>';
         }
+
+//        var_dump($moreDelete); die;
 
         $html .= "<table{$optionsString}>";
         $html .= self::renderHeader($attributes, $moreDelete);
@@ -49,7 +51,7 @@ class GridView
         return $html;
     }
 
-    protected static function renderHeader(array $attributes, bool $moreDelete = false): string
+    protected static function renderHeader(array $attributes, $moreDelete = null): string
     {
         $html = "<thead><tr>";
 
@@ -80,7 +82,7 @@ class GridView
         return $html;
     }
 
-    protected static function renderBody(array $attributes, array $dataProvider, bool $moreDelete = false, string $primaryKey = 'id'): string
+    protected static function renderBody(array $attributes, array $dataProvider, $moreDelete = null, string $primaryKey = 'id'): string
     {
         $html = "<tbody>";
 
